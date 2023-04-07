@@ -45,12 +45,13 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 
 lvim.builtin.which_key.mappings.l["o"] = { "<cmd>RustOpenExternalDocs<cr>", "Open external docs" }
-lvim.builtin.which_key.mappings.l["e"] = { "<cmd>RustHoverActions<cr>", "Rust actions" }
+lvim.builtin.which_key.mappings.l["e"] = { "<cmd>RustRunnables<cr>", "Rust runnables" }
 lvim.builtin.which_key.mappings.b["c"] = { "<cmd>BufferKill<cr>", "Close buffer" }
 lvim.builtin.which_key.mappings.b["a"] = {
   "<cmd>BufferLineCloseRight<cr><cmd>BufferLineCloseLeft<cr>",
   "Close all but this one",
 };
+lvim.builtin.which_key.mappings.b["r"] = { "<cmd>Telescope oldfiles<cr>", "Recent" }
 
 local ok, telescope_actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings.i["<C-j>"] = telescope_actions.move_selection_next
@@ -75,14 +76,13 @@ lvim.keys.normal_mode["<space>]"] = ":bnext<cr>"
 lvim.keys.term_mode["<ESC>"] = "<C-\\><C-n>"
 lvim.keys.term_mode["<C-space>"] = "<C-\\><C-n><cmd>ToggleTerm<cr>"
 
--- Insert mode
-lvim.keys.insert_mode["jj"] = "<ESC>"
-
 -- Control-C is ESC
 lvim.keys.normal_mode["<C-c>"] = "<ESC>"
 
 lvim.keys.normal_mode["<C-j>"] = "<C-D>zz"
 lvim.keys.normal_mode["<C-k>"] = "<C-U>zz"
+lvim.keys.visual_mode["<C-j>"] = "<C-D>zz"
+lvim.keys.visual_mode["<C-k>"] = "<C-U>zz"
 lvim.builtin.nvimtree.setup.open_on_setup = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 40
@@ -114,6 +114,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = { "*.py" },
   command = "silent !black -q %",
+})
+
+-- markdown
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.md" },
+  command = "set textwidth=120 fo+=aw wrap",
 })
 
 ------------------------------------
