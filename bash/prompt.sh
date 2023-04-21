@@ -14,3 +14,5 @@ then
   PS2='\\ '
   PS4='+ $LINENO: '
 fi
+
+alias less="less -R"
