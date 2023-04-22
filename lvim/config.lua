@@ -72,10 +72,6 @@ lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping.confirm({ select = true })
 lvim.keys.normal_mode["<space>["] = ":bprev<cr>"
 lvim.keys.normal_mode["<space>]"] = ":bnext<cr>"
 
--- Terminal mode
-lvim.keys.term_mode["<ESC>"] = "<C-\\><C-n>"
-lvim.keys.term_mode["<C-space>"] = "<C-\\><C-n><cmd>ToggleTerm<cr>"
-
 -- Control-C is ESC
 lvim.keys.normal_mode["<C-c>"] = "<ESC>"
 
@@ -83,7 +79,6 @@ lvim.keys.normal_mode["<C-j>"] = "<C-D>zz"
 lvim.keys.normal_mode["<C-k>"] = "<C-U>zz"
 lvim.keys.visual_mode["<C-j>"] = "<C-D>zz"
 lvim.keys.visual_mode["<C-k>"] = "<C-U>zz"
-lvim.builtin.nvimtree.setup.open_on_setup = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.width = 40
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
@@ -140,6 +135,7 @@ end
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = open_nvim_tree
 })
+
 ------------------------------------
 --- Terminal
 ------------------------------------
@@ -147,6 +143,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
 lvim.keys.normal_mode["<leader>1"] = ":1ToggleTerm<CR>"
 lvim.keys.normal_mode["<leader>2"] = ":2ToggleTerm<CR>"
 lvim.keys.normal_mode["<leader>3"] = ":3ToggleTerm<CR>"
+
+-- Terminal mode
+lvim.keys.term_mode["<ESC>"] = "<C-\\><C-n>"
+lvim.keys.term_mode["<C-space>"] = "<C-\\><C-n><cmd>ToggleTerm<cr>"
+
+-- Start on insert mode.
+vim.cmd("autocmd BufWinEnter,WinEnter term://* startinsert")
 
 ------------------------------------
 -- Custom plugins
