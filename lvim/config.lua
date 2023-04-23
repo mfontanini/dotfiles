@@ -59,10 +59,29 @@ lvim.builtin.telescope.defaults.mappings.i["<C-k>"] = telescope_actions.move_sel
 lvim.builtin.telescope.defaults.mappings.n["<C-j>"] = telescope_actions.move_selection_next
 lvim.builtin.telescope.defaults.mappings.n["<C-k>"] = telescope_actions.move_selection_previous
 
+-- ------------
 -- LSP settings
+-- ------------
 
 local cmp = require("cmp")
 lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping.confirm({ select = true })
+
+-- No snippets
+for _, value in pairs(lvim.builtin.cmp.sources) do
+  if value.name == "nvim_lsp" then
+    value.entry_filter = function(entry, ctx)
+      local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+      if kind == "Snippet" then
+        return false
+      end
+      if kind == "Text" then
+        return false
+      end
+      return true
+    end
+    break
+  end
+end
 
 -----------------------------------
 -- Navigation
