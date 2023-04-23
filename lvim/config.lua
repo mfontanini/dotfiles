@@ -35,10 +35,10 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-p>"] = find_project_files
 lvim.keys.normal_mode["<C-f>"] = ":Telescope live_grep<cr>"
 lvim.builtin.comment.toggler = {
-  line = '<C-_>',
+  line = '<C-/>',
   block = 'gb'
 }
-lvim.keys.visual_mode["<C-_>"] = "<Plug>(comment_toggle_linewise_visual)"
+lvim.keys.visual_mode["<C-/>"] = "<Plug>(comment_toggle_linewise_visual)"
 lvim.keys.normal_mode["<ESC>"] = ":nohl<cr>"
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
