@@ -4,13 +4,32 @@ local extension_path = vim.env.HOME .. '/.config/lvim/lldb-vscode'
 local codelldb_path = extension_path .. 'codelldb'
 local liblldb_path = extension_path .. 'liblldb.so'
 
+local null_ls = require('null-ls')
+
 lvim.plugins = {
+  -- Parameter hints while calling functions.
   {
     "ray-x/lsp_signature.nvim",
+    version = "v0.2.0",
     config = function()
-      require("lsp_signature").setup({})
+      require("lsp_signature").setup()
     end,
   },
+  -- Cargo.toml dependency hints.
+  {
+    "saecki/crates.nvim",
+    version = "v0.3.0",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require('crates').setup {
+        null_ls = {
+          enabled = true,
+          name = "crates.nvim",
+        }
+      }
+    end,
+  },
+  -- Proper Rust LSP'ing.
   {
     "simrat39/rust-tools.nvim",
     -- ft = { "rust", "rs" }, -- IMPORTANT: re-enabling this seems to break inlay-hints
