@@ -118,6 +118,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
   command = "set syntax=make",
 })
 
+-- cmake
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "CMakeLists.txt" },
+  command = "set syntax=cmake",
+})
+
 -- jenkinsfiles
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "Jenkinsfile", "*.pipeline" },
