@@ -1,8 +1,0 @@
-window:
-  dimensions:
-    columns: 200
-    lines: 50
-  padding:
-    x: 6
-    y: 6
-  dynamic_padding: false
