@@ -15,6 +15,10 @@ lvim.plugins = {
       require("lsp_signature").setup()
     end,
   },
+  {
+    "mg979/vim-visual-multi",
+    version = "v0.5.8",
+  },
   -- Cargo.toml dependency hints.
   {
     "saecki/crates.nvim",
