@@ -47,8 +47,15 @@ return {
         o = { "<cmd>RustOpenExternalDocs<cr>", "Open external docs" },
         e = { "<cmd>RustRunnables<cr>", "Rust runnables" },
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
+        S = {
+          "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+          "Workspace symbols",
+        },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        c = { "<cmd>Telescope lsp_references<cr>", "References" }
+        c = { "<cmd>Telescope lsp_references<cr>", "References" },
+        w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
+        j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
+        i = { "<cmd>LspInfo<cr>", "Info" },
       },
     }
     wk.register(mappings, opts)
