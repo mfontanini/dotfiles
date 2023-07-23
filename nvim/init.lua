@@ -1,0 +1,5 @@
+require("prelude")
+require("misc")
+require("theme")
+require("autocmds")
+require("keymaps")
