@@ -15,7 +15,6 @@ return {
         "yaml",
         "dockerfile",
         "cmake",
-        "groovy",
       },
       indent = { enable = true },
       highlight = {
