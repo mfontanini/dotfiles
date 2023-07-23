@@ -52,6 +52,7 @@ lvim.builtin.which_key.mappings.b["a"] = {
   "Close all but this one",
 };
 lvim.builtin.which_key.mappings.b["r"] = { "<cmd>Telescope oldfiles<cr>", "Recent" }
+lvim.builtin.which_key.mappings.l["c"] = { "<cmd>Telescope lsp_references<cr>", "References" }
 
 local ok, telescope_actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings.i["<C-j>"] = telescope_actions.move_selection_next
