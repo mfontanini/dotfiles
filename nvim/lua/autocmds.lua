@@ -1,3 +1,8 @@
+-- Title
+vim.api.nvim_create_autocmd("BufEnter", {
+  command = ":let &titlestring = 'nvim: ' .. expand(\"%:t\") |  set title",
+})
+
 -- justfiles formatting
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "justfile" },
