@@ -9,8 +9,4 @@ return {
       },
     })
   end,
-  on_attach = function(client, bufnr)
-    local U = require('numToStr.plugins.lsp.utils')
-
-  end,
 }
