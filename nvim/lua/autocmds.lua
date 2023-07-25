@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- autosave when changing buffers
-vim.api.nvim_create_autocmd({ "BufLeave" }, {
+vim.api.nvim_create_autocmd("BufLeave", {
   callback = function()
     if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
       vim.api.nvim_command('silent update')
@@ -59,3 +59,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank { higroup = "Search", timeout = 100 }
   end,
 })
+
+-- Open terminal on insert mode.
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter"}, {
+  pattern = "term://*",
+  command = "startinsert",
+})
+
