@@ -1,6 +1,6 @@
 -- Title
 vim.api.nvim_create_autocmd("BufEnter", {
-  command = ":let &titlestring = 'nvim: ' .. expand(\"%:t\") |  set title",
+  command = ":let &titlestring = expand(\"%:t\") .. ' [nvim]' |  set title",
 })
 
 -- justfiles formatting
@@ -21,10 +21,25 @@ vim.api.nvim_create_autocmd("BufEnter", {
   command = "set syntax=groovy",
 })
 
+-- terraform formatting
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.tf" },
+  command = "set filetype=hcl",
+})
+
 -- markdown formatting
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.md" },
   command = "set textwidth=120 fo+=aw wrap",
+})
+
+-- autosave when changing buffers
+vim.api.nvim_create_autocmd({ "BufLeave" }, {
+  callback = function()
+    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+      vim.api.nvim_command('silent update')
+    end
+  end,
 })
 
 -- rust file autoformat on save

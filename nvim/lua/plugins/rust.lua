@@ -1,3 +1,6 @@
+local rust_capabilities = require("cmp_nvim_lsp").default_capabilities()
+rust_capabilities.textDocument.completion.completionItem.snippetSupport = false
+
 return {
   {
     "simrat39/rust-tools.nvim",
@@ -5,8 +8,15 @@ return {
     config = function()
       local rt = require("rust-tools")
       rt.setup {
+        tools = {
+          hover_actions = {
+            max_height = 8,
+            auto_focus = true,
+          },
+        },
         server = {
           standalone = true,
+          capabilities = rust_capabilities,
           on_attach = function(_, bufnr)
             vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
           end,

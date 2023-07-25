@@ -30,12 +30,21 @@ return {
         signcolumn = "yes",
         width = 40,
       },
+      renderer = {
+        highlight_git = true,
+      },
+      update_focused_file = {
+        enable = true,
+      },
       diagnostics = {
         enable = true,
         show_on_dirs = true,
       },
       git = {
         enable = true,
+      },
+      actions = {
+        use_system_clipboard = true,
       },
       on_attach = on_buffer_attach,
     }

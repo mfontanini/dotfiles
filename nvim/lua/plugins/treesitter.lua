@@ -15,6 +15,7 @@ return {
         "yaml",
         "dockerfile",
         "cmake",
+        "hcl",
       },
       indent = { enable = true },
       highlight = {

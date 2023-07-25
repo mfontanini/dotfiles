@@ -7,13 +7,23 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
     },
     config = function()
       local cmp = require("cmp")
+
       cmp.setup({
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
+          end,
+        },
+
+        formatting = {
+          format = function(_, vim_item)
+            -- No signatures
+            vim_item.menu = nil
+            return vim_item
           end,
         },
 
@@ -29,11 +39,18 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(-4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<ESC>"] = cmp.mapping.abort(),
-          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+          ["<Tab>"] = cmp.mapping.confirm({ select = false }),
+          ["<cr>"] = cmp.mapping.confirm({ select = false }),
         }),
 
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
+          {
+            name = "nvim_lsp",
+            entry_filter = function(entry, ctx)
+              local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+              return kind ~= "Snippet"
+            end,
+          },
           { name = "path" },
         }),
 
@@ -42,11 +59,15 @@ return {
         },
       })
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = false
-      require("lspconfig")["rust_analyzer"].setup {
-        capabilities = capabilities
-      }
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline({
+          ['<C-j>'] = { c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }) },
+          ['<C-k>'] = { c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }) },
+        }),
+        sources = {
+          { name = "cmdline" },
+        }
+      })
     end
   },
   {
