@@ -3,6 +3,7 @@ vim.opt.spelllang = { "en" }
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
+vim.opt.updatetime = 750
 vim.opt.shada = "!,'32,<50,s10,h"
 vim.opt.pumheight = 16
 vim.opt.colorcolumn = "120"

@@ -17,8 +17,9 @@ return {
         server = {
           standalone = true,
           capabilities = rust_capabilities,
-          on_attach = function(_, bufnr)
+          on_attach = function(client, bufnr)
             vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            require("utils/lsp").enable_cursor_highlighting(client, bufnr)
           end,
         },
       }

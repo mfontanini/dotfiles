@@ -1,5 +1,5 @@
 require("prelude")
-require("misc")
+require("options")
 require("theme")
 require("autocmds")
 require("keymaps")
