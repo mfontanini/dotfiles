@@ -1,13 +1,3 @@
--- rust file autoformat on save
-local format_group = vim.api.nvim_create_augroup("Format", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.rs",
-  callback = function()
-    vim.lsp.buf.format({ timeout_ms = 200 })
-  end,
-  group = format_group,
-})
-
 -- Highlight text when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
