@@ -4,10 +4,11 @@ return {
     commit = "c4e491a87eeacf0408902c32f031d802c7eafce8", 
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-buffer",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       local cmp = require("cmp")
@@ -52,6 +53,8 @@ return {
             end,
           },
           { name = "path" },
+        }, {
+          { name = "buffer" },
         }),
 
         completion = {
