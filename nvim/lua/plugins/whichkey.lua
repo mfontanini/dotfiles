@@ -42,7 +42,7 @@ return {
         r = { "<cmd>Telescope oldfiles cwd_only=true<cr>", "Recent" },
       },
       l = {
-        name = "LSP",
+        name = "LSP and more",
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
         o = { "<cmd>RustOpenExternalDocs<cr>", "Open external docs" },
         e = { "<cmd>RustRunnables<cr>", "Rust runnables" },
@@ -56,6 +56,7 @@ return {
         w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
         j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
         i = { "<cmd>LspInfo<cr>", "Info" },
+        t = { "<cmd>RustRunnables<cr>", "Rust runnables" },
       },
     }
     wk.register(mappings, opts)
