@@ -43,7 +43,7 @@ return {
       },
       l = {
         name = "LSP",
-        a = { "<cmd>RustCodeAction<cr>", "Code action" },
+        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
         o = { "<cmd>RustOpenExternalDocs<cr>", "Open external docs" },
         e = { "<cmd>RustRunnables<cr>", "Rust runnables" },
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
