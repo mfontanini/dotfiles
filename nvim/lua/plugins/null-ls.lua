@@ -9,7 +9,7 @@ return {
       debug = true,
       sources = {
         null_ls.builtins.formatting.rustfmt.with({
-          extra_args = { "--edition=2021", "+nightly" },
+          args = { "+nightly", "--emit=stdout", },
         }),
         null_ls.builtins.formatting.black,
       },
