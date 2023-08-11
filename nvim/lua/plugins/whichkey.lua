@@ -1,3 +1,8 @@
+local function rename_and_save()
+  vim.lsp.buf.rename()
+  vim.cmd('silent! wa')
+end
+
 return {
   "folke/which-key.nvim",
   commit = "38b990f6eabf62014018b4aae70a97d7a6c2eb88",
@@ -51,7 +56,7 @@ return {
           "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
           "Workspace symbols",
         },
-        r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+        r = { rename_and_save, "Rename" },
         c = { "<cmd>Telescope lsp_references<cr>", "References" },
         w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
         j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
