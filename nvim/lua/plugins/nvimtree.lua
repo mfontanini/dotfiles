@@ -11,7 +11,13 @@ local function on_buffer_attach(bufnr)
   vim.keymap.set('n', '<C-k>', "<C-u>", opts('Page up'))
 end
 
-local function open_nvim_tree()
+local function open_nvim_tree(data)
+  local is_directory = vim.fn.isdirectory(data.file) == 1
+
+  if not is_directory then
+    return
+  end
+
   require("nvim-tree.api").tree.open()
 end
 
