@@ -12,6 +12,7 @@ vim.opt.guicursor = "i:block-blinkwait50-blinkon200-blinkoff150"
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 vim.wo.relativenumber = true
+vim.wo.number = true
 
 -- Always show diagnostics column
 vim.opt.signcolumn = "yes"
