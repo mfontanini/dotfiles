@@ -1,8 +1,3 @@
-local function rename_and_save()
-  vim.lsp.buf.rename()
-  vim.cmd('silent! wa')
-end
-
 return {
   "folke/which-key.nvim",
   commit = "38b990f6eabf62014018b4aae70a97d7a6c2eb88",
@@ -32,38 +27,5 @@ return {
         },
       },
     })
-
-    local opts = {
-      mode = "n",
-      prefix = "<space>",
-      silent = true,
-      noremap = true,
-      nowait = true,
-    }
-
-    local mappings = {
-      b = {
-        name = "Buffers",
-        r = { "<cmd>Telescope oldfiles cwd_only=true<cr>", "Recent" },
-      },
-      l = {
-        name = "LSP and more",
-        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
-        o = { "<cmd>RustOpenExternalDocs<cr>", "Open external docs" },
-        e = { "<cmd>RustRunnables<cr>", "Rust runnables" },
-        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols" },
-        S = {
-          "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-          "Workspace symbols",
-        },
-        r = { rename_and_save, "Rename" },
-        c = { "<cmd>Telescope lsp_references<cr>", "References" },
-        w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-        j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
-        i = { "<cmd>LspInfo<cr>", "Info" },
-        t = { "<cmd>RustRunnables<cr>", "Rust runnables" },
-      },
-    }
-    wk.register(mappings, opts)
   end,
 }
