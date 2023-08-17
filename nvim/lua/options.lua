@@ -12,8 +12,7 @@ vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.opt.clipboard = "unnamedplus"
 
 vim.wo.relativenumber = true
 vim.wo.number = true

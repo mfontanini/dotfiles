@@ -1,11 +1,6 @@
 local keymap = vim.keymap.set
 local telescope = require("telescope.builtin")
 
-local function rename_and_save()
-  vim.lsp.buf.rename()
-  vim.cmd("silent! wa")
-end
-
 local function current_buffer_fuzzy_find()
   telescope.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
     winblend = 10,
@@ -47,9 +42,12 @@ keymap("n", "<leader>sD", telescope.diagnostics, { desc = "[Search] Diagnostics 
 
 keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "Jump to definition" })
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[LSP] Code actions" })
-keymap("n", "<leader>re", rename_and_save, { desc = "[LSP] Rename" })
+keymap("n", "<leader>re", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { desc = "Rename", expr = true })
 keymap("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "[LSP] Next diagnostic" })
 keymap("n", "<leader>dk", vim.diagnostic.goto_prev, { desc = "[LSP] Previous diagnostic" })
+keymap("n", "K", vim.lsp.buf.hover, { desc = "[LSP] Hover documentation" })
 
 keymap("n", "<leader>rd", "<cmd>RustOpenExternalDocs<cr>", { desc = "[Rust] Open external docs" })
 keymap("n", "<leader>rr", "<cmd>RustRunnables<cr>", { desc = "[Rust] Runnables" })
