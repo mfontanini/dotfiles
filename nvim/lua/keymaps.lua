@@ -16,6 +16,27 @@ local function current_buffer_diagnostics()
   telescope.diagnostics({ bufnr = 0 })
 end
 
+local function rename_and_save()
+  vim.ui.input({ prompt = "Name: ", default = vim.fn.expand("<cword>")}, function(name)
+    local params = vim.lsp.util.make_position_params()
+    params.newName = name
+
+    vim.lsp.buf_request(0, "textDocument/rename", params, function(err, result, ctx, _)
+      if err and err.message then
+        return
+      end
+
+      if not result or vim.tbl_isempty(result) then
+        return
+      end
+
+      local client = vim.lsp.get_client_by_id(ctx.client_id)
+      vim.lsp.util.apply_workspace_edit(result, client.offset_encoding)
+      vim.cmd("silent! wa") 
+    end)
+  end)
+end
+
 -- Normal
 keymap("n", "<C-h>",  "<C-w>h")
 keymap("n", "<C-l>",  "<C-w>l")
@@ -40,11 +61,9 @@ keymap("n", "<leader>sr", telescope.lsp_references, { desc = "[Search] Reference
 keymap("n", "<leader>sd", current_buffer_diagnostics, { desc = "[Search] Diagnostics" })
 keymap("n", "<leader>sD", telescope.diagnostics, { desc = "[Search] Diagnostics globally" })
 
-keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "Jump to definition" })
+keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[LSP] Code actions" })
-keymap("n", "<leader>re", function()
-  return ":IncRename " .. vim.fn.expand("<cword>")
-end, { desc = "Rename", expr = true })
+keymap("n", "<leader>re", rename_and_save, { desc = "[LSP] Rename" })
 keymap("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "[LSP] Next diagnostic" })
 keymap("n", "<leader>dk", vim.diagnostic.goto_prev, { desc = "[LSP] Previous diagnostic" })
 keymap("n", "K", vim.lsp.buf.hover, { desc = "[LSP] Hover documentation" })
