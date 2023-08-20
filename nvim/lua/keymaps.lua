@@ -61,6 +61,10 @@ keymap("n", "<leader>sr", telescope.lsp_references, { desc = "[Search] Reference
 keymap("n", "<leader>sd", current_buffer_diagnostics, { desc = "[Search] Diagnostics" })
 keymap("n", "<leader>sD", telescope.diagnostics, { desc = "[Search] Diagnostics globally" })
 
+keymap("n", "<leader>tt", "<cmd>NvimTreeToggle<cr>", { desc = "[Toggle] Tree" })
+keymap("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "[Toggle] Git blame" })
+keymap("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", { desc = "[Toggle] Git deleted lines" })
+
 keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[LSP] Code actions" })
 keymap("n", "<leader>re", rename_and_save, { desc = "[LSP] Rename" })
