@@ -1,11 +1,11 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  tag = "v0.9.0",
+  tag = "v0.9.1",
   build = ":TSUpdate",
   config = function()
     local configs = require("nvim-treesitter.configs")
     configs.setup {
-        ensure_installed = {
+      ensure_installed = {
         "bash",
         "c",
         "json",

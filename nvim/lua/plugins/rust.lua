@@ -17,6 +17,9 @@ return {
         server = {
           standalone = true,
           capabilities = rust_capabilities,
+          cmd_env = {
+            CARGO_TARGET_DIR = "target/rust-analyzer",
+          },
           rustfmt = {
             extraArgs = { "+nightly", },
           },
@@ -32,14 +35,7 @@ return {
     "saecki/crates.nvim",
     version = "v0.3.0",
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require('crates').setup {
-        null_ls = {
-          enabled = true,
-          name = "crates.nvim",
-        }
-      }
-    end,
+    opts = {},
   },
   {
     "rust-lang/rust.vim",
