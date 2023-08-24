@@ -5,7 +5,6 @@ local harpoon_ui = require("harpoon.ui")
 
 local function current_buffer_fuzzy_find()
   telescope.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-    winblend = 10,
     previewer = false,
   })
 end

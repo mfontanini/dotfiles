@@ -24,3 +24,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format()
   end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "Cargo.toml",
+  callback = function()
+    local output = vim.fn.system("cargo metadata --format-version 1")
+    if vim.v.shell_error ~= 0 then
+      error("cargo failure: " .. output)
+    end
+  end,
+})
