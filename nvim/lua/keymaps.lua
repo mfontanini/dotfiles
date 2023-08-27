@@ -62,6 +62,10 @@ keymap("n", "<leader>sr", telescope.lsp_references, { desc = "[Search] Reference
 keymap("n", "<leader>sd", current_buffer_diagnostics, { desc = "[Search] Diagnostics" })
 keymap("n", "<leader>sD", telescope.diagnostics, { desc = "[Search] Diagnostics globally" })
 keymap("n", "<leader>sh", "<cmd>Telescope harpoon marks<cr>", { desc = "[Search] Harpoon marks" })
+keymap("n", "<leader>sc", telescope.git_commits, { desc = "[Search] Git commits" })
+keymap("n", "<leader>sC", telescope.git_bcommits, { desc = "[Search] Git buffer commits" })
+keymap("n", "<leader>sb", telescope.git_branches, { desc = "[Search] Git branches" })
+keymap("n", "<leader>st", telescope.git_status, { desc = "[Search] Git status" })
 
 keymap("n", "<leader>tt", "<cmd>NvimTreeToggle<cr>", { desc = "[Toggle] Tree" })
 keymap("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "[Toggle] Git blame" })
