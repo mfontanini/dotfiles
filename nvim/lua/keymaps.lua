@@ -72,6 +72,8 @@ keymap("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc 
 keymap("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", { desc = "[Toggle] Git deleted lines" })
 keymap("n", "<leader>th", harpoon_ui.toggle_quick_menu, { desc = "[Toggle] Harpoon menu" })
 
+keymap("n", "<leader>G", "<cmd>:below G<cr>", { desc = "[Fugitive] Git" })
+
 keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[LSP] Code actions" })
 keymap("n", "<leader>re", rename_and_save, { desc = "[LSP] Rename" })
