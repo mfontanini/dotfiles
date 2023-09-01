@@ -88,6 +88,9 @@ keymap("n", "<leader>ha", harpoon_mark.add_file, { desc = "[Harpoon] Add file" }
 keymap("n", "<leader>hn", harpoon_ui.nav_next, { desc = "[Harpoon] Next file" })
 keymap("n", "<leader>hp", harpoon_ui.nav_prev, { desc = "[Harpoon] Previous file" })
 
+keymap("n", "c", "\"_c", { noremap = true })
+keymap("n", "x", "\"_x", { noremap = true })
+
 -- Visual
 keymap("v", ">", ">gv")
 keymap("v", "<", "<gv")

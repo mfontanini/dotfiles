@@ -2,6 +2,9 @@ return {
   {
     "tpope/vim-fugitive",
     commit = "b3b838d690f315a503ec4af8c634bdff3b200aaf",
+    config = function()
+      vim.keymap.del("n", "y<C-G>") 
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",
