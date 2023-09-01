@@ -7,7 +7,7 @@ return {
     npairs.setup()
 
     local Rule = require("nvim-autopairs.rule")
-    local macro_regex = vim.regex("^[\\s]*#\\[")
+    local macro_regex = vim.regex("^[\\s]*#\\[.*)\\]")
     -- ideally this would be smarter and consider multi line
     local use_regex = vim.regex("^use ")
     npairs.get_rules("(")[1]:with_pair(function(opts)
