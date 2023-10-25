@@ -20,8 +20,12 @@ return {
           cmd_env = {
             CARGO_TARGET_DIR = "target/rust-analyzer",
           },
-          rustfmt = {
-            extraArgs = { "+nightly", },
+          settings = {
+            ['rust-analyzer'] = {
+              rustfmt = {
+                extraArgs = { "+nightly" },
+              },
+            },
           },
           on_attach = function(client, bufnr)
             vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
