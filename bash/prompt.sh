@@ -1,4 +1,4 @@
-if [ $color_prompt == "yes" ]
+if [ "$color_prompt" == "yes" ]
 then
   # Set prompt.
   # `root` has a red prompt, others a yellow one.
