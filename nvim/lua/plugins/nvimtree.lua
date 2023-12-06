@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 return {
   "nvim-tree/nvim-tree.lua",
-  commit = "3b62c6bf2c3f2973036aed609d02fd0ca9c3af35",
+  commit = "7d1760f892951dd6a118dae1d7a1d8df5f029edf",
   lazy = false,
   dependencies = {
     "nvim-tree/nvim-web-devicons",

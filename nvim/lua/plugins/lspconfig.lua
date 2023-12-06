@@ -1,4 +1,4 @@
 return {
   "neovim/nvim-lspconfig",
-  commit = "dd11ba7b3c8f82d51b6d4dd7d68fce2d78bf78a0",
+  commit = "6c797ff9324094e333e2ace9526ca4a62ad9d1ca",
 }

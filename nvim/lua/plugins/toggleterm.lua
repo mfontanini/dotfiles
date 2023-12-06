@@ -1,6 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
-  commit = "00c13dccc78c09fa5da4c5edda990a363e75035e",
+  commit = "cbd041d91b90cd3c02df03fe6133208888f8e008",
   opts = {
     direction = "float",
   }
