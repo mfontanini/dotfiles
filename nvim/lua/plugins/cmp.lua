@@ -24,8 +24,10 @@ return {
 
         formatting = {
           format = function(_, vim_item)
-            -- No signatures
-            vim_item.menu = nil
+            if vim_item.menu ~= nil then
+              -- This keeps the ` (use std::potato::Potato)` if it exists or nothing otherwise
+              vim_item.menu = string.match(vim_item.menu, "^ %(use .-%)")
+            end
             return vim_item
           end,
         },
