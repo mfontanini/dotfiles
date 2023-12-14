@@ -1,7 +1,6 @@
-lvim/plugin
-lvim/lazy-lock.json
-
 nvim/lazy
 nvim/.netrwhist
 nvim/telescope_history
 nvim/harpoon.json
+
+fish/env.fish
