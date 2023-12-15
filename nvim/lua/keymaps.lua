@@ -13,6 +13,12 @@ local function recent_files()
   telescope.oldfiles({ cwd_only = true })
 end
 
+local function search_modified_git_files()
+  telescope.git_files({
+    git_command = { "git", "ls-files", "--exclude-standard", "-m" }
+  })
+end
+
 local function current_buffer_diagnostics()
   telescope.diagnostics({ bufnr = 0 })
 end
@@ -37,6 +43,9 @@ local function rename_and_save()
     end)
   end)
 end
+
+-- Insert
+keymap("i", "jj",  "<ESC>")
 
 -- Normal
 keymap("n", "<C-h>",  "<C-w>h")
@@ -73,6 +82,7 @@ keymap("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", { desc = "[Toggle]
 keymap("n", "<leader>th", harpoon_ui.toggle_quick_menu, { desc = "[Toggle] Harpoon menu" })
 
 keymap("n", "<leader>G", "<cmd>:below G<cr>", { desc = "[Fugitive] Git" })
+keymap("n", "<leader>m", search_modified_git_files, { desc = "[Search] Modified files" })
 
 keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[LSP] Code actions" })
