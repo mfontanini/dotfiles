@@ -38,5 +38,5 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- shfmt formatting
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.sh" },
-  command = ":Shfmt",
+  command = "silent %!shfmt %",
 })
