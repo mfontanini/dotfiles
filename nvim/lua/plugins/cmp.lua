@@ -12,9 +12,14 @@ return {
     },
     config = function()
       local cmp = require("cmp")
+      local context = require("cmp.config.context")
 
       cmp.setup({
         preselect = cmp.PreselectMode.None,
+
+        enabled = function()
+          return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+        end,
 
         snippet = {
           expand = function(args)
