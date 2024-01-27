@@ -60,6 +60,14 @@ keymap("n", "<leader>1", ":1ToggleTerm<CR>", { desc = "Toggle terminal 1" })
 keymap("n", "<leader>2", ":2ToggleTerm<CR>", { desc = "Toggle terminal 2" })
 keymap("n", "<leader>3", ":3ToggleTerm<CR>", { desc = "Toggle terminal 3" })
 keymap("n", "<leader>w",  ":w<CR>")
+keymap('n', 'n', 'nzzzv')
+keymap('n', 'N', 'Nzzzv')
+keymap('c', '<CR>',
+  function()
+    return vim.fn.getcmdtype() == '/' and '<CR>zzzv' or '<CR>'
+  end,
+  { expr = true }
+)
 
 keymap("n", "<C-f>",  telescope.live_grep, { desc = "Live grep" })
 keymap("n", "<C-p>",  telescope.find_files, { desc = "Find files" })
