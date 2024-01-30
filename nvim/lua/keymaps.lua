@@ -1,5 +1,6 @@
 local keymap = vim.keymap.set
 local telescope = require("telescope.builtin")
+local trouble = require("trouble")
 local harpoon_mark = require("harpoon.mark")
 local harpoon_ui = require("harpoon.ui")
 
@@ -52,21 +53,34 @@ keymap("n", "<C-h>",  "<C-w>h")
 keymap("n", "<C-l>",  "<C-w>l")
 keymap("n", "<C-j>",  "<C-d>zz")
 keymap("n", "<C-k>",  "<C-u>zz")
-keymap("n", "<C-c>",  "<ESC>")
-keymap("n", "<C-s>",  ":w<CR>")
+keymap("n", "<C-c>",  "<esc>")
+keymap("n", "<C-s>",  ":w<cr>")
 keymap("n", "<leader>",  "<Nop>")
 keymap("n", "<ESC>", ":nohl<cr>")
-keymap("n", "<leader>1", ":1ToggleTerm<CR>", { desc = "Toggle terminal 1" })
-keymap("n", "<leader>2", ":2ToggleTerm<CR>", { desc = "Toggle terminal 2" })
-keymap("n", "<leader>3", ":3ToggleTerm<CR>", { desc = "Toggle terminal 3" })
-keymap("n", "<leader>w",  ":w<CR>")
-keymap('n', 'n', 'nzzzv')
-keymap('n', 'N', 'Nzzzv')
-keymap('c', '<CR>',
+keymap("n", "<leader>1", "<cmd>1ToggleTerm<cr>", { desc = "Toggle terminal 1" })
+keymap("n", "<leader>2", "<cmd>2ToggleTerm<cr>", { desc = "Toggle terminal 2" })
+keymap("n", "<leader>3", "<cmd>3ToggleTerm<cr>", { desc = "Toggle terminal 3" })
+keymap("n", "<leader>w",  ":w<cr>")
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
+keymap("c", "<cr>",
   function()
-    return vim.fn.getcmdtype() == '/' and '<CR>zzzv' or '<CR>'
+    return vim.fn.getcmdtype() == "/" and "<CR>zzzv" or "<CR>"
   end,
   { expr = true }
+)
+keymap("n", "<leader>tr", trouble.toggle, { desc = "[Toggle] Trouble"})
+keymap("n", "<leader>tj",
+  function()
+    return trouble.next({skip_groups = true, jump = true})
+  end,
+  { desc = "[Trouble] Next"}
+)
+keymap("n", "<leader>tk",
+  function()
+    return trouble.previous({skip_groups = true, jump = true})
+  end,
+  { desc = "[Trouble] Previous"}
 )
 
 keymap("n", "<C-f>",  telescope.live_grep, { desc = "Live grep" })
