@@ -9,6 +9,7 @@ return {
       local rt = require("rust-tools")
       rt.setup {
         tools = {
+          executor = require("rust-tools.executors").toggleterm,
           hover_actions = {
             max_height = 8,
             auto_focus = true,
