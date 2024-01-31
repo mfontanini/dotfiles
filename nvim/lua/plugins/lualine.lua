@@ -8,6 +8,14 @@ return {
     config = function()
       require("lualine").setup {
         sections = {
+          lualine_b = {
+            "branch",
+            "diff",
+            {
+              "diagnostics",
+              sources = { "nvim_workspace_diagnostic" },
+            },
+          },
           lualine_c = {
             {
               "filename",
