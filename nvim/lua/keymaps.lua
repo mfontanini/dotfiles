@@ -83,8 +83,28 @@ keymap("n", "<leader>tk",
   { desc = "[Trouble] Previous"}
 )
 
-keymap("n", "<C-f>",  telescope.live_grep, { desc = "Live grep" })
-keymap("n", "<C-p>",  telescope.find_files, { desc = "Find files" })
+keymap("n", "<C-f>",
+  function()
+    return telescope.live_grep({glob_pattern = "!.git", additional_args = {"--hidden"}})
+  end,
+  { desc = "Live grep" }
+)
+keymap("n", "<C-p>",
+  function()
+    return telescope.find_files({
+      find_command={
+        "rg",
+        "--hidden",
+        "--files",
+        "--color",
+        "never",
+        "--glob",
+        "!.git"
+      }
+    })
+  end,
+  { desc = "Find files" }
+)
 keymap("n", "<leader>?", recent_files, { desc = "Find recently opened files" })
 keymap("n", "<leader><space>", telescope.buffers, { desc = "Find existing buffers" })
 keymap("n", "<leader>/",  current_buffer_fuzzy_find, { desc = "Find in current buffer" })
