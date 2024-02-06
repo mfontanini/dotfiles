@@ -1,0 +1,7 @@
+\.git
+\.gitignore
+
+^/install\.sh
+
+^/README.*
+.+\.swp

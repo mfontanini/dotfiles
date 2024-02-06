@@ -1,6 +1,1 @@
-nvim/lazy
-nvim/.netrwhist
-nvim/telescope_history
-nvim/harpoon.json
-
-fish/env.fish
+.config/fish/env.fish
