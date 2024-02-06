@@ -14,6 +14,7 @@ return {
             {
               "diagnostics",
               sources = { "nvim_workspace_diagnostic" },
+              sections = { "error", "warn" },
             },
           },
           lualine_c = {
