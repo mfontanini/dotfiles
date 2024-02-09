@@ -16,15 +16,6 @@ vim.api.nvim_create_autocmd("BufLeave", {
   end,
 })
 
--- Autoformat on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = group,
-  buffer = bufnr,
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "Cargo.toml",
   callback = function()
@@ -36,7 +27,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 -- shfmt formatting
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = { "*.sh" },
-  command = "silent %!shfmt %",
+  command = "silent !shfmt -w %",
 })
