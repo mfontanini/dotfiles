@@ -117,7 +117,19 @@ keymap("n", "<leader>sh", "<cmd>Telescope harpoon marks<cr>", { desc = "[Search]
 keymap("n", "<leader>sc", telescope.git_commits, { desc = "[Search] Git commits" })
 keymap("n", "<leader>sC", telescope.git_bcommits, { desc = "[Search] Git buffer commits" })
 keymap("n", "<leader>sb", telescope.git_branches, { desc = "[Search] Git branches" })
-keymap("n", "<leader>st", telescope.git_status, { desc = "[Search] Git status" })
+keymap("n", "<leader>st",
+  function()
+    return telescope.git_status({
+      layout_strategy = "vertical",
+      layout_config = {
+        vertical = {
+          preview_height = 0.6,
+        },
+      },
+    })
+  end,
+  { desc = "[Search] Git status" }
+)
 
 keymap("n", "<leader>tt", "<cmd>NvimTreeToggle<cr>", { desc = "[Toggle] Tree" })
 keymap("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "[Toggle] Git blame" })
