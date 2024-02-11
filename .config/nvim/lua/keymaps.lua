@@ -131,7 +131,8 @@ keymap("n", "<leader>st",
   { desc = "[Search] Git status" }
 )
 
-keymap("n", "<leader>tt", "<cmd>NvimTreeToggle<cr>", { desc = "[Toggle] Tree" })
+
+keymap("n", "<leader>e", "<cmd>Neotree filesystem toggle=true<cr>", { desc = "[TODO] Tree" })
 keymap("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "[Toggle] Git blame" })
 keymap("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", { desc = "[Toggle] Git deleted lines" })
 keymap("n", "<leader>th", harpoon_ui.toggle_quick_menu, { desc = "[Toggle] Harpoon menu" })
