@@ -142,6 +142,8 @@ keymap("n", "<leader>m", search_modified_git_files, { desc = "[Search] Modified 
 
 keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
 keymap("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
+keymap("n", "gs", telescope.lsp_document_symbols, { desc = "[LSP] Symbols" })
+keymap("n", "gS", telescope.lsp_dynamic_workspace_symbols, { desc = "[LSP] Symbols globally" })
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[LSP] Code actions" })
 keymap("n", "<leader>re", rename_and_save, { desc = "[LSP] Rename" })
 keymap("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "[LSP] Next diagnostic" })
