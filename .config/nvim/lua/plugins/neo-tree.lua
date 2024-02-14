@@ -24,7 +24,12 @@ return {
             command.execute({ action = "close" })
           end
         },
-      }
+      },
+      default_component_configs = {
+        type = {
+          enabled = false,
+        },
+      },
     })
   end
   
