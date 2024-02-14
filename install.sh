@@ -6,3 +6,5 @@ mkdir -p ~/.config
 
 pushd $script_dir
 stow --target="$HOME" -v .
+
+fc-cache -fv

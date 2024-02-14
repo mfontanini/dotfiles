@@ -3,7 +3,7 @@ import = [
 ]
 
 [font]
-normal = { family = "DejaVu Sans Mono" }
+normal = { family = "DejaVuSansM Nerd Font Mono" }
 
 [window]
 dimensions = { columns = 150, lines = 70 }
