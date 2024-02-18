@@ -49,8 +49,6 @@ end
 keymap("i", "jj",  "<ESC>")
 
 -- Normal
-keymap("n", "<C-h>",  "<C-w>h")
-keymap("n", "<C-l>",  "<C-w>l")
 keymap("n", "<C-j>",  "<C-d>zz")
 keymap("n", "<C-k>",  "<C-u>zz")
 keymap("n", "<C-c>",  "<esc>")
