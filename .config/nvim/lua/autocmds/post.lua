@@ -29,5 +29,5 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- shfmt formatting
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = { "*.sh" },
-  command = "silent !shfmt -w %",
+  command = "silent !shfmt -i 2 -w %",
 })
