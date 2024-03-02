@@ -30,6 +30,7 @@
 
 [delta]
   syntax-theme = Sublime Snazzy
+  line-numbers = true
 
 [branch]
   sort = -committerdate
