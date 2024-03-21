@@ -20,7 +20,7 @@ error() {
 
 check_installed_tools() {
   any_missing=0
-  tools=(nvim tmux alacritty fzf delta)
+  tools=(nvim tmux alacritty fzf delta mold)
   info checking for missing tools...
   for tool in "${tools[@]}"; do
     if ! which "$tool" >/dev/null; then
