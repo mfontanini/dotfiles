@@ -4,9 +4,9 @@ function pp --description "jump to a project"
     return 1
   end
 
-  set -f specific $(ls $PROJECTS_PATH | fzf --info=right --layout=reverse)
+  set -f path $(find $PROJECTS_PATH -maxdepth 1 -type d -print | fzf --info=right --layout=reverse)
   if test $pipestatus[2] -ne 0
     return 1
   end
-  cd "$PROJECTS_PATH/$specific"
+  cd $path
 end
