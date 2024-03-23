@@ -4,6 +4,6 @@ function jc --description "jump to a crate in the current cargo workspace"
     return 1
   end
   set -f workspace_root $(cargo metadata 2>/dev/null | jq ".workspace_root" -r)
-  set -f crate $(dirname $(echo $line | awk '{{ print $3 }}'))
+  set -f crate $(echo $line | awk '{{ print $3 }}' | sed 's/Cargo\.toml//')
   cd "$workspace_root/$crate"
 end
