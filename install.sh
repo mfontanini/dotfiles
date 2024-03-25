@@ -200,7 +200,7 @@ apt_install_core_tools() {
   if [ "${#missing[@]}" -ne 0 ]; then
     warn installing missing core tools: ${missing[@]}
     sudo apt -qq update
-    sudo apt -qq install -y ${missing[@]} >/dev/nulll
+    sudo apt -qq install -y ${missing[@]} >/dev/null
   else
     info all core tools are installed
   fi
