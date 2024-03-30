@@ -18,6 +18,12 @@ return {
         preselect = cmp.PreselectMode.None,
 
         enabled = function()
+          buftype = vim.api.nvim_buf_get_option(0, "buftype")
+          -- don't autocomplete on prompts, such as telescope
+          if buftype == "prompt" then
+            return false
+          end
+          -- don't autocomplete inside a code comment
           return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
         end,
 
