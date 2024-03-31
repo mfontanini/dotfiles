@@ -2,40 +2,12 @@
 
 set -e
 
-ALACRITTY_VERSION=0.13.2
-DELTA_VERSION=0.17.0
-FZF_VERSION=0.48.1
-MOLD_VERSION=2.30.0
-NVIM_VERSION=0.9.5
-TMUX_VERSION=3.4
-
-info_icon='\033[0;34mi\033[0m'
-success_icon='\033[0;32m✔\033[0m'
-warn_icon='\033[0;33m⚠️\033[0m'
-error_icon='\033[0;31m✗\033[0m'
-
-info() {
-  echo -e "${info_icon} $*"
-}
-
-success() {
-  echo -e "${success_icon} $*"
-}
-
-warn() {
-  echo -e "${warn_icon}$*"
-}
-
-error() {
-  echo -e "${error_icon} $*"
-}
-
 install_neovim() {
   if nvim --version 2>/dev/null | head -n 1 | grep "^NVIM v${NVIM_VERSION}$" >/dev/null; then
     info neovim is up to date
   else
     warn installing neovim ${NVIM_VERSION}...
-    url="https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage"
+    url="https://github.com/${NVIM_REPO}/releases/download/v${NVIM_VERSION}/nvim.appimage"
     wget $url -O ~/.local/bin/nvim 2>/dev/null
     chmod +x ~/.local/bin/nvim
     info neovim installed
@@ -50,7 +22,7 @@ install_fzf() {
     temp=$(mktemp -d)
     filename="fzf-${FZF_VERSION}-linux_amd64.tar.gz"
     pushd "$temp" >/dev/null
-    wget "https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/${filename}" 2>/dev/null
+    wget "https://github.com/${FZF_REPO}/releases/download/${FZF_VERSION}/${filename}" 2>/dev/null
     tar xvzf "$filename" >/dev/null
     mv fzf ~/.local/bin/fzf
     popd >/dev/null
@@ -77,7 +49,7 @@ install_mold() {
     filename="${dir}.tar.gz"
     temp=$(mktemp -d)
     pushd "$temp" >/dev/null
-    wget "https://github.com/rui314/mold/releases/download/v${MOLD_VERSION}/${filename}" 2>/dev/null
+    wget "https://github.com/${MOLD_REPO}/releases/download/v${MOLD_VERSION}/${filename}" 2>/dev/null
     tar xvzf "${filename}" >/dev/null
     cp -r ${dir}/* ~/.local
     popd >/dev/null
@@ -92,7 +64,7 @@ install_delta() {
     warn installing delta ${DELTA_VERSION}...
     dir="delta-${DELTA_VERSION}-x86_64-unknown-linux-gnu"
     filename="${dir}.tar.gz"
-    url="https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/${filename}"
+    url="https://github.com/${DELTA_REPO}/releases/download/${DELTA_VERSION}/${filename}"
     temp=$(mktemp -d)
     pushd "$temp" >/dev/null
     wget "$url" 2>/dev/null
@@ -110,7 +82,7 @@ install_tmux() {
     warn installing tmux ${TMUX_VERSION}...
     dir="tmux-${TMUX_VERSION}"
     filename="${dir}.tar.gz"
-    url="https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/${filename}"
+    url="https://github.com/${TMUX_REPO}/releases/download/${TMUX_VERSION}/${filename}"
     temp=$(mktemp -d)
     pushd "$temp" >/dev/null
     wget "$url" 2>/dev/null
@@ -125,7 +97,7 @@ install_tmux() {
 }
 
 install_fish() {
-  if which fish; then
+  if which fish >/dev/null; then
     info fish is up to date
   else
     warn installing fish shell...
@@ -207,6 +179,8 @@ apt_install_core_tools() {
 }
 
 script_dir=$(dirname "$0")
+source "${script_dir}/versions.sh"
+source "${script_dir}/logging.sh"
 pushd "$script_dir" >/dev/null || exit
 
 apt_install_core_tools

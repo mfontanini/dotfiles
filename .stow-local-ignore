@@ -2,6 +2,9 @@
 \.gitignore
 
 ^/install\.sh
+^/versions\.sh
+^/check-for-updates\.sh
+^/logging\.sh
 
 ^/README.*
 .+\.swp
