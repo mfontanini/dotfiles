@@ -19,9 +19,10 @@ check_version() {
   version=$(normalize_version $2)
 
   latest=$(curl "https://api.github.com/repos/${repo}/releases/latest" -s | jq -r .tag_name)
-  latest=$(normalize_version "$latest")
-  if [ "$version" != "$latest" ]; then
-    warn "${repo} update available: we're using ${version} but latest is ${latest}"
+  normalized_latest=$(normalize_version "$latest")
+  if [ "$version" != "$normalized_latest" ]; then
+    release_url="http://github.com/${repo}/releases/${latest}"
+    warn "${repo} update available: we're using ${version} but latest is ${latest}: ${release_url}"
   else
     info "${repo} is up to date"
   fi
