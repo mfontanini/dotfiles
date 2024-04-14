@@ -7,3 +7,12 @@ normal = { family = "DejaVuSansM Nerd Font Mono" }
 
 [window]
 dimensions = { columns = 150, lines = 70 }
+
+[[hints.enabled]]
+command = "xdg-open"
+hyperlinks = true
+mouse.enabled = true
+mouse.mods = "Control"
+post_processing = true
+persist = false
+regex = "(https://|http://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩‘]+"
