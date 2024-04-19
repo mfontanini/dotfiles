@@ -75,6 +75,16 @@ install_delta() {
   fi
 }
 
+install_pyright() {
+  if pyright --version 2>/dev/null | grep "^pyright ${PYRIGHT_VERSION}$" >/dev/null; then
+    info pyright is up to date
+  else
+    warn installing pyright ${PYRIGHT_VERSION}...
+    pip install --upgrade pyright
+    info pyright installed
+  fi
+}
+
 install_tmux() {
   if tmux -V 2>/dev/null | grep "^tmux ${TMUX_VERSION}$" >/dev/null; then
     info tmux is up to date
@@ -117,6 +127,7 @@ install_cli_tools() {
   install_fzf
   install_mold
   install_delta
+  install_pyright
   install_fish
   info all cli tools installed
 }

@@ -24,11 +24,11 @@ check_version() {
     release_url="http://github.com/${repo}/releases/${latest}"
     warn "${repo} update available: we're using ${version} but latest is ${latest}: ${release_url}"
   else
-    info "${repo} is up to date"
+    success "${repo} is up to date"
   fi
 }
 
-dependencies=(nvim fzf alacritty mold delta tmux)
+dependencies=(nvim fzf alacritty mold delta tmux pyright)
 for dependency in "${dependencies[@]}"; do
   repo_var="${dependency^^}_REPO"
   version_var="${dependency^^}_VERSION"
