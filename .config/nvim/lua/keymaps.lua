@@ -70,7 +70,7 @@ keymap("c", "<cr>",
   end,
   { expr = true }
 )
-keymap("n", "<leader>tr", trouble.toggle, { desc = "[Toggle] Trouble"})
+keymap("n", "<leader>tt", trouble.toggle, { desc = "[Toggle] Trouble"})
 keymap("n", "<leader>tj",
   function()
     return trouble.next({skip_groups = true, jump = true})
