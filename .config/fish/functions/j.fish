@@ -2,6 +2,8 @@ function j --description "quick jump entry point" -a action
   switch $action
     case wr
       jump_cargo_workspace
+    case r
+      jump_repo_root
     case c
       jump_crate
     case p
@@ -18,6 +20,15 @@ function jump_cargo_workspace
     return 1
   end
   cd $workspace_root
+end
+
+function jump_repo_root
+  set -l repo_root $(git rev-parse --show-toplevel)
+  if test $pipestatus[1] -ne 0
+    echo "not in a git repo"
+    return 1
+  end
+  cd $repo_root
 end
 
 function jump_crate
