@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    commit = "0b751f6beef40fd47375eaf53d3057e0bfa317e4", 
+    commit = "5260e5e8ecadaf13e6b82cf867a909f54e15fd07", 
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
@@ -90,7 +90,7 @@ return {
   },
   {
     "ray-x/lsp_signature.nvim",
-    version = "v0.2.0",
+    version = "v0.3.1",
     config = function()
       require("lsp_signature").setup()
     end,

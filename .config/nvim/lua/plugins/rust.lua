@@ -3,38 +3,49 @@ rust_capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 return {
   {
-    "simrat39/rust-tools.nvim",
-    commit = "0cc8adab23117783a0292a0c8a2fbed1005dc645",
-    config = function()
-      local rt = require("rust-tools")
-      rt.setup {
-        tools = {
-          executor = require("rust-tools.executors").toggleterm,
-          hover_actions = {
-            max_height = 8,
-            auto_focus = true,
-          },
+    "mrcjkb/rustaceanvim",
+    version = '^4',
+    ft = { "rust" },
+    opts = {
+      -- tools = {
+      --   executor = require("rust-tools.executors").toggleterm,
+      -- },
+      server = {
+        capabilities = rust_capabilities,
+        cmd_env = {
+          CARGO_TARGET_DIR = "target/rust-analyzer",
         },
-        server = {
-          standalone = true,
-          capabilities = rust_capabilities,
-          cmd_env = {
-            CARGO_TARGET_DIR = "target/rust-analyzer",
-          },
-          settings = {
-            ['rust-analyzer'] = {
-              rustfmt = {
-                extraArgs = { "+nightly" },
+        default_settings = {
+          ['rust-analyzer'] = {
+            rustfmt = {
+              extraArgs = { "+nightly" },
+            },
+            cargo = {
+              allFeatures = true,
+              loadOutDirsFromCheck = true,
+              runBuildScripts = true,
+            },
+            procMacro = {
+              enable = true,
+              ignored = {
+                ["async-trait"] = { "async_trait" },
+                ["napi-derive"] = { "napi" },
+                ["async-recursion"] = { "async_recursion" },
               },
             },
           },
-          on_attach = function(client, bufnr)
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-            require("utils/lsp").enable_cursor_highlighting(client, bufnr)
-          end,
         },
-      }
-    end,
+        on_attach = function(client, bufnr)
+          -- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+          require("utils/lsp").enable_cursor_highlighting(client, bufnr)
+        end,
+      },
+    },
+    config = function(_, opts)
+      vim.g.rustaceanvim = vim.tbl_deep_extend("force",
+        {},
+        opts or {})
+    end
   },
   {
     "saecki/crates.nvim",

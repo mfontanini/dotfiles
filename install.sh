@@ -8,8 +8,10 @@ install_neovim() {
   else
     warn installing neovim ${NVIM_VERSION}...
     url="https://github.com/${NVIM_REPO}/releases/download/v${NVIM_VERSION}/nvim.appimage"
-    wget $url -O ~/.local/bin/nvim 2>/dev/null
-    chmod +x ~/.local/bin/nvim
+    wget $url -O /tmp/nvim 2>/dev/null
+    temp=$(mktemp)
+    chmod +x "$temp"
+    mv "$temp" ~/.local/bin/nvim
     info neovim installed
   fi
 }
