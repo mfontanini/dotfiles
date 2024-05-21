@@ -7,9 +7,10 @@ return {
     version = '^4',
     ft = { "rust" },
     opts = {
-      -- tools = {
-      --   executor = require("rust-tools.executors").toggleterm,
-      -- },
+      tools = {
+        -- executor = require("rust-tools.executors").toggleterm,
+        enable_clippy = false,
+      },
       server = {
         capabilities = rust_capabilities,
         cmd_env = {
@@ -24,6 +25,7 @@ return {
               allFeatures = true,
               loadOutDirsFromCheck = true,
               runBuildScripts = true,
+              unsetTest = true,
             },
             procMacro = {
               enable = true,

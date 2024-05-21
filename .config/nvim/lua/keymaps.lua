@@ -148,7 +148,7 @@ keymap("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "[LSP] Next diagnos
 keymap("n", "<leader>dk", vim.diagnostic.goto_prev, { desc = "[LSP] Previous diagnostic" })
 keymap("n", "K", vim.lsp.buf.hover, { desc = "[LSP] Hover documentation" })
 
-keymap("n", "<leader>rd", "<cmd>RustOpenExternalDocs<cr>", { desc = "[Rust] Open external docs" })
+keymap("n", "<leader>rd", "<cmd>RustLsp openDocs<cr>", { desc = "[Rust] Open external docs" })
 keymap("n", "<leader>rr", "<cmd>RustRunnables<cr>", { desc = "[Rust] Runnables" })
 
 keymap("n", "<leader>ha", harpoon_mark.add_file, { desc = "[Harpoon] Add file" })
