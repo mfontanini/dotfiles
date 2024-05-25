@@ -25,6 +25,15 @@
   # append changes to previous commit (unless we're rebasing!)
   yolo-commit = !"yolo() { if [ -f "$(git rev-parse --show-toplevel)/.git/rebase-merge/done" ]; then echo 'rebase in progress!'; else git commit --amend --no-edit --no-verify; fi }; yolo"
 
+  # start interactive rebase
+  rbi = rebase -i
+
+  # continue rebase
+  rbc = rebase --continue
+
+  # abort rebase
+  rba = rebase --abort
+
 [fetch]
   prune = true
 
