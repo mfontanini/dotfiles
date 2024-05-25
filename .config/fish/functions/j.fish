@@ -2,7 +2,7 @@ function j --description "quick jump entry point" -a action
   switch $action
     case wr
       jump_cargo_workspace
-    case r
+    case rr
       jump_repo_root
     case c
       jump_crate
