@@ -40,6 +40,10 @@
 [push]
   default = current
 
+[pull]
+  rebase = true
+  default = current
+
 [delta]
   syntax-theme = Sublime Snazzy
   line-numbers = true
