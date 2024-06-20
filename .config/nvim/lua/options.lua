@@ -13,6 +13,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.scrolloff = 10
 
 vim.wo.relativenumber = true
 vim.wo.number = true

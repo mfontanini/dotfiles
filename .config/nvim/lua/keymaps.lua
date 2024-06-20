@@ -69,7 +69,13 @@ keymap("c", "<cr>",
   end,
   { expr = true }
 )
-keymap("n", "<leader>tt", trouble.toggle, { desc = "[Toggle] Trouble"})
+keymap("n", "<leader>tt", "<cmd>Trouble diagnostics toggle focus=true<cr>", { desc = "[Toggle] Trouble"})
+keymap("n", "<leader>tf",
+  function()
+    trouble.focus("diagnostics")
+  end,
+  { desc = "[Focus] Trouble"}
+)
 keymap("n", "<leader>tj",
   function()
     return trouble.next({skip_groups = true, jump = true})
@@ -78,7 +84,7 @@ keymap("n", "<leader>tj",
 )
 keymap("n", "<leader>tk",
   function()
-    return trouble.previous({skip_groups = true, jump = true})
+    return trouble.prev({skip_groups = true, jump = true})
   end,
   { desc = "[Trouble] Previous"}
 )

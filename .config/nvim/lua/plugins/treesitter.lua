@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  commit = "ccfa76d4cb53224cb0ecefb12f79ecdbbf1fd62d",
+  commit = "9636d5a3f4f531256fba147a30b882c44f28fae1",
   build = ":TSUpdate",
   config = function()
     local configs = require("nvim-treesitter.configs")
