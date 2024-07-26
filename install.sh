@@ -20,11 +20,11 @@ install_fzf() {
   if fzf --version 2>/dev/null | grep "^${FZF_VERSION} " >/dev/null; then
     info fzf is up to date
   else
-    warn installing fzf ${FZF_VERIONS}...
+    warn installing fzf ${FZF_VERSION}...
     temp=$(mktemp -d)
     filename="fzf-${FZF_VERSION}-linux_amd64.tar.gz"
     pushd "$temp" >/dev/null
-    wget "https://github.com/${FZF_REPO}/releases/download/${FZF_VERSION}/${filename}" 2>/dev/null
+    wget "https://github.com/${FZF_REPO}/releases/download/v${FZF_VERSION}/${filename}" 2>/dev/null
     tar xvzf "$filename" >/dev/null
     mv fzf ~/.local/bin/fzf
     popd >/dev/null

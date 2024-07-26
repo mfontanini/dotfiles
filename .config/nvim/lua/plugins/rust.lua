@@ -22,10 +22,12 @@ return {
               extraArgs = { "+nightly" },
             },
             cargo = {
-              allFeatures = true,
+              check = {
+                allTargets = true,
+                features = "all",
+              },
               loadOutDirsFromCheck = true,
               runBuildScripts = true,
-              unsetTest = true,
             },
             procMacro = {
               enable = true,
