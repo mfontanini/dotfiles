@@ -1,3 +1,9 @@
 defaults:
   validate_overflows: never
-
+snippet:
+  exec:
+    enable: true
+  exec_replace:
+    enable: false
+  render:
+    threads: 2
