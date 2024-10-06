@@ -13,7 +13,18 @@ function tm -a 'session_name' --description "create/open a tmux session"
   end
 
   if ! tmux has-session -t $session_name 2>/dev/null
-    tmux new-session -ds $session_name
+    # Set '$PROJECTS_PATH/$session_name` as the start dir if it exists
+    if set -q PROJECTS_PATH
+      for dir in $PROJECTS_PATH
+        set -f target_dir "$dir/$session_name"
+        if test -d $target_dir
+          set extra_args -c $target_dir
+          break
+        end
+      end
+    end
+
+    tmux new -ds $session_name $extra_args
   end
 
   if set -q TMUX
@@ -22,4 +33,3 @@ function tm -a 'session_name' --description "create/open a tmux session"
     tmux attach -t $session_name
   end
 end
-
