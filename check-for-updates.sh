@@ -68,7 +68,7 @@ main() {
   done
 
   any_updates=0
-  dependencies=(nvim fzf alacritty mold delta tmux pyright)
+  dependencies=(nvim fzf alacritty mold delta tmux uv pyright)
   for dependency in "${dependencies[@]}"; do
     repo_var="${dependency^^}_REPO"
     version_var="${dependency^^}_VERSION"

@@ -77,6 +77,16 @@ install_delta() {
   fi
 }
 
+install_uv() {
+  if uv --version 2>/dev/null | grep "^uv ${UV_VERSION}$" >/dev/null; then
+    info uv is up to date
+  else
+    warn installing uv ${UV_VERSION}...
+    curl --proto '=https' --tlsv1.2 -LsSf https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-installer.sh | sh
+    info uv installed
+  fi
+}
+
 install_pyright() {
   if pyright --version 2>/dev/null | grep "^pyright ${PYRIGHT_VERSION}$" >/dev/null; then
     info pyright is up to date
@@ -129,6 +139,7 @@ install_cli_tools() {
   install_fzf
   install_mold
   install_delta
+  install_uv
   install_pyright
   install_fish
   info all cli tools installed
