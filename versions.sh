@@ -15,3 +15,5 @@ NVIM_REPO=neovim/neovim
 PYRIGHT_REPO=microsoft/pyright
 TMUX_REPO=tmux/tmux
 UV_REPO=astral-sh/uv
+
+VENV_PATH=~/.cache/devenv/venv

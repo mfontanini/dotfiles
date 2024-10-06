@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
-lspconfig.ruff_lsp.setup {}
-lspconfig.pyright.setup {}
+lspconfig.pyright.setup {
+  cmd = { "/home/matias/.cache/devenv/venv/bin/pyright-langserver", "--stdio" },
+}
 
 return {}

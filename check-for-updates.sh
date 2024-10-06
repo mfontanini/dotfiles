@@ -50,6 +50,9 @@ main() {
   source "${script_dir}/versions.sh"
   source "${script_dir}/logging.sh"
   source "${script_dir}/.env"
+  if test -d "$VENV_PATH"; then
+    source "$VENV_PATH/bin/activate"
+  fi
 
   while [[ $# -gt 0 ]]; do
     case $1 in

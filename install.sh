@@ -84,6 +84,11 @@ install_uv() {
     warn installing uv ${UV_VERSION}...
     curl --proto '=https' --tlsv1.2 -LsSf https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-installer.sh | sh
     info uv installed
+    if ! test -d "$VENV_PATH"; then
+      warn devenv pyenv does not exist, creating
+      uv venv "$VENV_PATH"
+      info pyenv created at "$VENV_PATH"
+    fi
   fi
 }
 
@@ -92,7 +97,7 @@ install_pyright() {
     info pyright is up to date
   else
     warn installing pyright ${PYRIGHT_VERSION}...
-    pip install --upgrade pyright
+    uv pip install --upgrade pyright
     info pyright installed
   fi
 }
@@ -140,9 +145,14 @@ install_cli_tools() {
   install_mold
   install_delta
   install_uv
-  install_pyright
   install_fish
   info all cli tools installed
+}
+
+install_python_tools() {
+  info installing python tools
+  install_pyright
+  info all python tools installed
 }
 
 install_gui_tools() {
@@ -210,6 +220,10 @@ pushd "$script_dir" >/dev/null || exit
 apt_install_core_tools
 symlink_dotfiles
 install_cli_tools
+
+# python, not even once
+source "$VENV_PATH/bin/activate"
+install_python_tools
 if env | grep "^NO_GUI_TOOLS$"; then
   install_gui_tools
 fi
