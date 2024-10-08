@@ -8,6 +8,8 @@ function j --description "quick jump entry point" -a action
       jump_crate
     case p
       jump_project
+    case b
+      jump_git_branch
     case '*'
       echo "invalid action: $action"
   end
@@ -24,7 +26,7 @@ end
 
 function jump_repo_root
   set -l repo_root $(git rev-parse --show-toplevel)
-  if test $pipestatus[1] -ne 0
+  if test $status -ne 0
     echo "not in a git repo"
     return 1
   end
@@ -52,4 +54,12 @@ function jump_project
     return 1
   end
   cd $path
+end
+
+function jump_git_branch
+  set -f branch $(git branch --format="%(refname:short)" | fzf --info=right --layout reverse)
+  if test $pipestatus[2] -ne 0
+    return 1
+  end
+  git checkout $branch 
 end

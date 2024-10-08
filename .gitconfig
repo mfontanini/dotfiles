@@ -13,12 +13,6 @@
   # sync master/main branch
   sm = !"sm() { for branch in main master; do if [ $(git rev-parse --verify $branch 2>/dev/null) ]; then git checkout $branch; git pull origin $branch; git submodule update --init --recursive; break; fi; done }; sm"
 
-  # jump to a branch interactively
-  jb = !"git checkout $(git branch | fzf)"
-
-  # recent branches
-  rb = branch --sort=-committerdate --format="%(committerdate:relative)%09%(refname:short)"
-
   # cleanup merged branches
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|main' | xargs -n 1 -r git branch -d"
 
