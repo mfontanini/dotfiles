@@ -16,7 +16,7 @@ function j --description "quick jump entry point" -a action
 end
 
 function jump_cargo_workspace
-  set -l workspace_root $(cargo metadata 2>/dev/null | jq ".workspace_root" -r)
+  set -l workspace_root $(cargo locate-project --workspace 2>/dev/null | jq ".root" -r)
   if test $pipestatus[1] -ne 0
     echo "not in a workspace"
     return 1
@@ -38,7 +38,7 @@ function jump_crate
   if test $pipestatus[2] -ne 0
     return 1
   end
-  set -f workspace_root $(cargo metadata 2>/dev/null | jq ".workspace_root" -r)
+  set -f workspace_root $(cargo locate-project --workspace 2>/dev/null | jq ".root" -r | sed 's/Cargo\.toml//')
   set -f crate $(echo $line | awk '{{ print $3 }}' | sed 's/Cargo\.toml//')
   cd "$workspace_root/$crate"
 end
