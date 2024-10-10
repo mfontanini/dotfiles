@@ -23,13 +23,16 @@
   rbi = rebase -i
 
   # rebase against origin/{main/master}
-  rbm = !"rbm() { for branch in main master; do if [ $(git rev-parse --verify $branch 2>/dev/null) ]; then git rebase -i $branch; git pull origin $branch; break; fi; done }; rbm"
+  rbm = !"rbm() { for branch in main master; do if [ $(git rev-parse --verify $branch 2>/dev/null) ]; then git rebase -i origin/$branch; git pull origin $branch; break; fi; done }; rbm"
 
   # continue rebase
   rbc = rebase --continue
 
   # abort rebase
   rba = rebase --abort
+
+  # checkout
+  co = checkout 
 
 [fetch]
   prune = true
