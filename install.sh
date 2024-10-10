@@ -102,6 +102,16 @@ install_pyright() {
   fi
 }
 
+install_ruff() {
+  if ruff-lsp --version 2>/dev/null | grep "^ruff-lsp ${RUFF_VERSION}$" >/dev/null; then
+    info ruff is up to date
+  else
+    warn installing ruff ${RUFF_VERSION}...
+    uv pip install --upgrade ruff-lsp
+    info ruff-lsp installed
+  fi
+}
+
 install_tmux() {
   if tmux -V 2>/dev/null | grep "^tmux ${TMUX_VERSION}$" >/dev/null; then
     info tmux is up to date
@@ -152,6 +162,7 @@ install_cli_tools() {
 install_python_tools() {
   info installing python tools
   install_pyright
+  install_ruff
   info all python tools installed
 }
 

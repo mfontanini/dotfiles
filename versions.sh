@@ -4,6 +4,7 @@ FZF_VERSION=0.55.0
 MOLD_VERSION=2.34.1
 NVIM_VERSION=0.10.2
 PYRIGHT_VERSION=1.1.383
+RUFF_VERSION=0.0.57
 TMUX_VERSION=3.5a
 UV_VERSION=0.4.18
 
@@ -13,6 +14,7 @@ FZF_REPO=junegunn/fzf
 MOLD_REPO=rui314/mold
 NVIM_REPO=neovim/neovim
 PYRIGHT_REPO=microsoft/pyright
+RUFF_REPO=astral-sh/ruff-lsp
 TMUX_REPO=tmux/tmux
 UV_REPO=astral-sh/uv
 
