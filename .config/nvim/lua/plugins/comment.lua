@@ -3,10 +3,10 @@ return {
   tag = "v0.8.0",
   opts = {
     toggler = {
-      line = "<C-/>",
+      line = "<C-_>",
     },
     opleader = {
-      line = "<C-/>",
+      line = "<C-_>",
     },
-  },
+  }
 }
