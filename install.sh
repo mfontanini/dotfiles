@@ -125,7 +125,7 @@ install_tmux() {
     wget "$url" 2>/dev/null
     tar xvzf "$filename" >/dev/null
     cd "${dir}"
-    ./configure --prefix="$HOME/.local" -q
+    ./configure --prefix="$HOME/.local" -q --enable-sixel
     MAKEFLAGS=--silent make
     MAKEFLAGS=--silent make install
     popd >/dev/null
