@@ -35,7 +35,7 @@
   co = checkout 
 
   # submodule update
-  sbu = submodule update --init --recursive
+  smu = submodule update --init --recursive
 
 [fetch]
   prune = true
