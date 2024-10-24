@@ -1,6 +1,3 @@
-import = [
-    "~/.config/alacritty/themes/tokyo-night-storm.toml"
-]
 
 [font]
 normal = { family = "DejaVuSansM Nerd Font Mono" }
@@ -16,3 +13,8 @@ mouse.mods = "Control"
 post_processing = true
 persist = false
 regex = "(https://|http://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩‘]+"
+
+[general]
+import = [
+    "~/.config/alacritty/themes/tokyo-night-storm.toml"
+]

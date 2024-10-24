@@ -235,6 +235,6 @@ install_cli_tools
 # python, not even once
 source "$VENV_PATH/bin/activate"
 install_python_tools
-if env | grep "^NO_GUI_TOOLS$"; then
+if ! env | grep -e "^NO_GUI_TOOLS=" >/dev/null; then
   install_gui_tools
 fi
