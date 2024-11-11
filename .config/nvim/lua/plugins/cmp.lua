@@ -16,13 +16,18 @@ local lspkind_comparator = function(conf)
 		if kind2 == "Variable" and entry2:get_completion_item().label:match("%w*=") then
 			kind2 = "Parameter"
 		end
+    local is_trait_fn1 = entry1.completion_item.labelDetails.detail ~= nil
+    local is_trait_fn2 = entry2.completion_item.labelDetails.detail ~= nil
+    if is_trait_fn1 ~= is_trait_fn2 then
+      return (is_trait_fn1 and 1 or 0) < (is_trait_fn2 and 1 or 0)
+    end
 
 		local priority1 = conf.kind_priority[kind1] or 0
 		local priority2 = conf.kind_priority[kind2] or 0
 		if priority1 == priority2 then
 			return nil
 		end
-		return priority2 < priority1
+		return priority1 > priority2
 	end
 end
 
@@ -49,38 +54,40 @@ return {
       cmp.setup({
         preselect = cmp.PreselectMode.None,
 
-        comparators = {
-          lspkind_comparator({
-            kind_priority = {
-              Parameter = 14,
-              Variable = 12,
-              Field = 0,
-              Property = 11,
-              Constant = 10,
-              Enum = 10,
-              EnumMember = 10,
-              Event = 10,
-              Function = 10,
-              Method = 10,
-              Operator = 10,
-              Reference = 10,
-              Struct = 10,
-              File = 8,
-              Folder = 8,
-              Class = 5,
-              Color = 5,
-              Module = 5,
-              Keyword = 2,
-              Constructor = 1,
-              Interface = 2,
-              Snippet = 0,
-              Text = 1,
-              TypeParameter = 1,
-              Unit = 1,
-              Value = 1,
-            },
-          }),
-          label_comparator,
+        sorting = {
+          comparators = {
+            lspkind_comparator({
+              kind_priority = {
+                Snippet = 0,
+                Constructor = 1,
+                Text = 1,
+                TypeParameter = 1,
+                Unit = 1,
+                Value = 1,
+                Keyword = 2,
+                Class = 5,
+                Color = 5,
+                Module = 5,
+                File = 8,
+                Folder = 8,
+                Interface = 10,
+                Constant = 10,
+                Enum = 10,
+                Event = 10,
+                Function = 13,
+                Method = 14,
+                Operator = 10,
+                Reference = 10,
+                Struct = 10,
+                Property = 11,
+                Variable = 12,
+                Parameter = 13,
+                EnumMember = 15,
+                Field = 15,
+              },
+            }),
+            label_comparator,
+          },
         },
 
         enabled = function()
