@@ -16,8 +16,8 @@ local lspkind_comparator = function(conf)
 		if kind2 == "Variable" and entry2:get_completion_item().label:match("%w*=") then
 			kind2 = "Parameter"
 		end
-    local is_trait_fn1 = entry1.completion_item.labelDetails.detail ~= nil
-    local is_trait_fn2 = entry2.completion_item.labelDetails.detail ~= nil
+    local is_trait_fn1 = entry1.completion_item.labelDetails ~= nil and entry1.completion_item.labelDetails.detail ~= nil
+    local is_trait_fn2 = entry2.completion_item.labelDetails ~= nil and entry2.completion_item.labelDetails.detail ~= nil
     if is_trait_fn1 ~= is_trait_fn2 then
       return (is_trait_fn1 and 1 or 0) < (is_trait_fn2 and 1 or 0)
     end
@@ -50,42 +50,45 @@ return {
     config = function()
       local cmp = require("cmp")
       local context = require("cmp.config.context")
+      local builtin_compare = require("cmp").config.compare
 
       cmp.setup({
         preselect = cmp.PreselectMode.None,
 
         sorting = {
           comparators = {
+            builtin_compare.exact,
             lspkind_comparator({
               kind_priority = {
                 Snippet = 0,
-                Constructor = 1,
                 Text = 1,
                 TypeParameter = 1,
                 Unit = 1,
                 Value = 1,
-                Keyword = 2,
-                Class = 5,
-                Color = 5,
-                Module = 5,
-                File = 8,
-                Folder = 8,
-                Interface = 10,
-                Constant = 10,
-                Enum = 10,
-                Event = 10,
-                Function = 13,
-                Method = 14,
-                Operator = 10,
-                Reference = 10,
-                Struct = 10,
-                Property = 11,
-                Variable = 12,
-                Parameter = 13,
-                EnumMember = 15,
-                Field = 15,
+                Keyword = 1,
+                Class = 1,
+                Color = 1,
+                Module = 1,
+                File = 1,
+                Folder = 1,
+                Constant = 1,
+                Event = 1,
+                Operator = 1,
+                Reference = 1,
+                Property = 1,
+                Function = 1,
+                Parameter = 1,
+                Interface = 2,
+                Enum = 2,
+                Struct = 2,
+                EnumMember = 2,
+                Constructor = 3,
+                Method = 3,
+                Field = 4,
+                Variable = 5,
               },
             }),
+            builtin_compare.score,
             label_comparator,
           },
         },
