@@ -61,6 +61,7 @@ keymap("n", "<leader>3", function() harpoon_ui.nav_file(3) end, { desc = "Harpoo
 keymap("n", "<leader>4", function() harpoon_ui.nav_file(4) end, { desc = "Harpoon file 4" })
 keymap("n", "<leader>5", function() harpoon_ui.nav_file(5) end, { desc = "Harpoon file 5" })
 keymap("n", "<leader>w",  ":w<cr>")
+keymap("n", "<leader>q",  ":cclose<cr>")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 keymap("c", "<cr>",
