@@ -37,6 +37,9 @@
   # submodule update
   smu = submodule update --init --recursive
 
+  # follow a blame trail
+  follow= "!sh -c 'git log --topo-order -u -L $2,${3:-$2}:"$1"'" -
+
 [fetch]
   prune = true
 
