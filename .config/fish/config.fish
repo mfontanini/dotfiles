@@ -4,3 +4,5 @@ end
 
 bind \n down-line
 bind \v up-line
+
+set -x EDITOR nvim
