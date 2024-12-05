@@ -38,7 +38,7 @@ end
 return {
   {
     "hrsh7th/nvim-cmp",
-    commit = "5260e5e8ecadaf13e6b82cf867a909f54e15fd07", 
+    commit = "ca4d3330d386e76967e53b85953c170658255ecb", 
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
@@ -125,8 +125,8 @@ return {
         },
 
         mapping = cmp.mapping.preset.insert({
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
+          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
           ["<C-b>"] = cmp.mapping.scroll_docs(4),
           ["<C-f>"] = cmp.mapping.scroll_docs(-4),
           ["<C-Space>"] = cmp.mapping.complete(),
