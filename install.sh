@@ -1,17 +1,35 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
+
+curl_github() {
+  curl "$1" \
+    --header "Authorization: Bearer ${GITHUB_TOKEN}" \
+    --header "X-GitHub-Api-Version: 2022-11-28" \
+    -L \
+    -s ${@:2}
+}
+
+install_binary() {
+  if [ $# -ne 2 ]; then
+    error "Usage: install_binary url path"
+  fi
+  url="$1"
+  filenam="$2"
+  temp_file=$(mktemp)
+  curl_github "$url" -o "$temp_file"
+  chmod +x "$temp_file"
+  mv "$temp_file" "~/.local/bin/${filename}"
+}
 
 install_neovim() {
   if nvim --version 2>/dev/null | head -n 1 | grep "^NVIM v${NVIM_VERSION}$" >/dev/null; then
     info neovim is up to date
   else
     warn installing neovim ${NVIM_VERSION}...
-    url="https://github.com/${NVIM_REPO}/releases/download/v${NVIM_VERSION}/nvim.appimage"
-    temp=$(mktemp)
-    wget $url -O "$temp" 2>/dev/null
-    chmod +x "$temp"
-    mv "$temp" ~/.local/bin/nvim
+    install_binary \
+      "https://github.com/${NVIM_REPO}/releases/download/v${NVIM_VERSION}/nvim.appimage" \
+      nvim
     info neovim installed
   fi
 }
@@ -29,6 +47,18 @@ install_fzf() {
     mv fzf ~/.local/bin/fzf
     popd >/dev/null
     info fzf installed
+  fi
+}
+
+install_jq() {
+  if jq -V 2>/dev/null | grep "^${JQ_VERSION}$" >/dev/null; then
+    info jq is up to date
+  else
+    warn installing jq ${JQ_VERSION}...
+    install_binary \
+      "https://github.com/${JQ_REPO}/releases/download/${JQ_VERSION}/jq-linux64" \
+      jq
+    info jq installed
   fi
 }
 
@@ -152,6 +182,7 @@ install_cli_tools() {
   install_neovim
   install_tmux
   install_fzf
+  install_jq
   install_mold
   install_delta
   install_uv
@@ -226,6 +257,7 @@ apt_install_core_tools() {
 script_dir=$(dirname "$0")
 source "${script_dir}/versions.sh"
 source "${script_dir}/logging.sh"
+source "${script_dir}/.env"
 pushd "$script_dir" >/dev/null || exit
 
 apt_install_core_tools
