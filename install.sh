@@ -15,11 +15,11 @@ install_binary() {
     error "Usage: install_binary url path"
   fi
   url="$1"
-  filenam="$2"
+  filename="$2"
   temp_file=$(mktemp)
   curl_github "$url" -o "$temp_file"
   chmod +x "$temp_file"
-  mv "$temp_file" "~/.local/bin/${filename}"
+  mv "$temp_file" "${HOME}/.local/bin/${filename}"
 }
 
 install_neovim() {
