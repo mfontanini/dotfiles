@@ -142,7 +142,7 @@ install_uv() {
 }
 
 install_pyright() {
-  if pyright --version 2>/dev/null | grep "^pyright ${PYRIGHT_VERSION}$" >/dev/null; then
+  if "${VENV_PATH}/bin/pyright" --version 2>/dev/null | grep "^pyright ${PYRIGHT_VERSION}$" >/dev/null; then
     info pyright is up to date
   else
     warn installing pyright ${PYRIGHT_VERSION}...
@@ -152,7 +152,7 @@ install_pyright() {
 }
 
 install_ruff() {
-  if ruff-lsp --version 2>/dev/null | grep "^ruff-lsp ${RUFF_VERSION}$" >/dev/null; then
+  if "${VENV_PATH}/bin/ruff-lsp" --version 2>/dev/null | grep "^ruff-lsp ${RUFF_VERSION}$" >/dev/null; then
     info ruff is up to date
   else
     warn installing ruff ${RUFF_VERSION}...
@@ -285,6 +285,8 @@ symlink_dotfiles
 install_cli_tools
 
 # python, not even once
+mkdir -p "$VENV_PATH"
+uv venv --allow-existing -q "$VENV_PATH"
 source "$VENV_PATH/bin/activate"
 install_python_tools
 if ! env | grep -e "^NO_GUI_TOOLS=" >/dev/null; then
