@@ -7,3 +7,5 @@ snippet:
     enable: false
   render:
     threads: 2
+speaker_notes:
+  always_publish: true
