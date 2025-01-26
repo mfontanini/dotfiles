@@ -22,6 +22,22 @@ install_binary() {
   mv "$temp_file" "${HOME}/.local/bin/${filename}"
 }
 
+install_tar_binary() {
+  if [ $# -ne 3 ]; then
+    error "Usage: install_binary url path tar-file"
+  fi
+  url="$1"
+  filename="$3"
+  temp_dir=$(mktemp -d)
+  pushd $temp_dir >/dev/null
+  tar_path="x.tar.gz"
+  curl_github "$url" -o "$tar_path"
+  tar xvf "$tar_path" >/dev/null
+
+  mv "${2}" "${HOME}/.local/bin/${filename}"
+  popd >/dev/null
+}
+
 install_neovim() {
   if nvim --version 2>/dev/null | head -n 1 | grep "^NVIM v${NVIM_VERSION}$" >/dev/null; then
     info neovim is up to date
@@ -39,14 +55,23 @@ install_fzf() {
     info fzf is up to date
   else
     warn installing fzf ${FZF_VERSION}...
-    temp=$(mktemp -d)
-    filename="fzf-${FZF_VERSION}-linux_amd64.tar.gz"
-    pushd "$temp" >/dev/null
-    wget "https://github.com/${FZF_REPO}/releases/download/v${FZF_VERSION}/${filename}" 2>/dev/null
-    tar xvzf "$filename" >/dev/null
-    mv fzf ~/.local/bin/fzf
-    popd >/dev/null
+    install_tar_binary "https://github.com/${FZF_REPO}/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz" \
+      fzf \
+      fzf
     info fzf installed
+  fi
+}
+
+install_gh() {
+  if gh --version 2>/dev/null | grep "^gh version ${GH_VERSION} " >/dev/null; then
+    info gh is up to date
+  else
+    warn installing gh ${GH_VERSION}...
+    install_tar_binary \
+      "https://github.com/${GH_REPO}/releases/download/v${GH_VERSION}/gh_2.65.0_linux_amd64.tar.gz" \
+      "gh_${GH_VERSION}_linux_amd64/bin/gh" \
+      gh
+    info gh installed
   fi
 }
 
@@ -94,15 +119,9 @@ install_delta() {
     info delta is up to date
   else
     warn installing delta ${DELTA_VERSION}...
-    dir="delta-${DELTA_VERSION}-x86_64-unknown-linux-gnu"
-    filename="${dir}.tar.gz"
-    url="https://github.com/${DELTA_REPO}/releases/download/${DELTA_VERSION}/${filename}"
-    temp=$(mktemp -d)
-    pushd "$temp" >/dev/null
-    wget "$url" 2>/dev/null
-    tar xvzf "$filename" >/dev/null
-    cp "${dir}/delta" ~/.local/bin
-    popd >/dev/null
+    install_tar_binary "https://github.com/${DELTA_REPO}/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+      "delta-${DELTA_VERSION}-x86_64-unknown-linux-gnu/delta" \
+      delta
     info delta installed
   fi
 }
@@ -182,6 +201,7 @@ install_cli_tools() {
   install_neovim
   install_tmux
   install_fzf
+  install_gh
   install_jq
   install_mold
   install_delta
