@@ -3,6 +3,7 @@ local telescope = require("telescope.builtin")
 local trouble = require("trouble")
 local harpoon_mark = require("harpoon.mark")
 local harpoon_ui = require("harpoon.ui")
+local neotest = require("neotest")
 
 local function current_buffer_fuzzy_find()
   telescope.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
@@ -134,7 +135,6 @@ keymap("n", "<leader>st",
   { desc = "[Search] Git status" }
 )
 
-
 keymap("n", "<leader>e", "<cmd>Neotree toggle=true reveal_force_cwd<cr>", { desc = "[Toggle] Tree" })
 keymap("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "[Toggle] Git blame" })
 keymap("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", { desc = "[Toggle] Git deleted lines" })
@@ -164,6 +164,11 @@ keymap("n", "<leader>hp", harpoon_ui.nav_prev, { desc = "[Harpoon] Previous file
 
 keymap("n", "c", "\"_c", { noremap = true })
 keymap("n", "x", "\"_x", { noremap = true })
+
+keymap("n", "<leader>Tc", neotest.run.run, { desc = "[Test] Current" })
+keymap("n", "<leader>Tf", function() neotest.run.run(vim.fn.expand("%")) end, { desc = "[Test] File" })
+keymap("n", "<leader>Ts", neotest.summary.toggle, { desc = "[Test] Toggle summary" })
+keymap("n", "<leader>To", neotest.output_panel.toggle, { desc = "[Test] Toggle output panel" })
 
 -- Visual
 keymap("v", ">", ">gv")
