@@ -1,4 +1,4 @@
-local rust_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local rust_capabilities = require("blink.cmp").get_lsp_capabilities()
 rust_capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 return {
@@ -38,10 +38,6 @@ return {
             },
           },
         },
-        on_attach = function(client, bufnr)
-          -- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-          require("utils/lsp").enable_cursor_highlighting(client, bufnr)
-        end,
       },
     },
     config = function(_, opts)
