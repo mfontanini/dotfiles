@@ -44,7 +44,7 @@ install_neovim() {
   else
     warn installing neovim ${NVIM_VERSION}...
     install_binary \
-      "https://github.com/${NVIM_REPO}/releases/download/v${NVIM_VERSION}/nvim.appimage" \
+      "https://github.com/${NVIM_REPO}/releases/download/v${NVIM_VERSION}/nvim-linux-x86_64.appimage" \
       nvim
     success neovim installed
   fi

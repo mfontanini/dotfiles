@@ -1,6 +1,6 @@
 return {
   "folke/tokyonight.nvim",
-  commit = "350a6ec8310e84f130dbcd2c716f2a31f8a97842",
+  commit = "dca4adba7dc5f09302a00b0e76078d54d82d2658",
   lazy = false,
   priority = 1000,
 }

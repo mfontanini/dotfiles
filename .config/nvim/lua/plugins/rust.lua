@@ -4,7 +4,7 @@ rust_capabilities.textDocument.completion.completionItem.snippetSupport = false
 return {
   {
     "mrcjkb/rustaceanvim",
-    version = "5.15.4",
+    version = "5.24.2",
     ft = { "rust" },
     opts = {
       tools = {
