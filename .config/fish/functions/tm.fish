@@ -6,7 +6,7 @@ function tm -a 'session_name' --description "create/open a tmux session"
       return 1
     end
 
-    set -f session_name $(string join \n $sessions | fzf --info=right --layout=reverse)
+    set -f session_name $(string join \n $sessions | fzf --info=right --tmux --layout=reverse)
     if test $pipestatus[2] -ne 0
       return 0
     end

@@ -1,28 +1,14 @@
 local keymap = vim.keymap.set
-local telescope = require("telescope.builtin")
+local fzf = require("fzf-lua")
 local trouble = require("trouble")
 local harpoon_mark = require("harpoon.mark")
 local harpoon_ui = require("harpoon.ui")
 local neotest = require("neotest")
 
-local function current_buffer_fuzzy_find()
-  telescope.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-    previewer = false,
-  })
-end
-
-local function recent_files()
-  telescope.oldfiles({ cwd_only = true })
-end
-
 local function search_modified_git_files()
-  telescope.git_files({
-    git_command = { "git", "ls-files", "--exclude-standard", "-m" }
+  return fzf.git_files({
+    cmd = "git ls-files --exclude-standard -m"
   })
-end
-
-local function current_buffer_diagnostics()
-  telescope.diagnostics({ bufnr = 0 })
 end
 
 local function rename_and_save()
@@ -91,49 +77,16 @@ keymap("n", "<leader>tk",
   { desc = "[Trouble] Previous"}
 )
 
-keymap("n", "<C-f>",
-  function()
-    return telescope.live_grep({glob_pattern = "!.git", additional_args = {"--hidden"}})
-  end,
-  { desc = "Live grep" }
-)
-keymap("n", "<C-p>",
-  function()
-    return telescope.find_files({
-      find_command={
-        "rg",
-        "--hidden",
-        "--files",
-        "--color",
-        "never",
-        "--glob",
-        "!.git"
-      }
-    })
-  end,
-  { desc = "Find files" }
-)
-keymap("n", "<leader>?", recent_files, { desc = "Find recently opened files" })
-keymap("n", "<leader><space>", telescope.buffers, { desc = "Find existing buffers" })
-keymap("n", "<leader>/",  current_buffer_fuzzy_find, { desc = "Find in current buffer" })
-keymap("n", "<leader>sD", telescope.diagnostics, { desc = "[Search] Diagnostics globally" })
-keymap("n", "<leader>sh", "<cmd>Telescope harpoon marks<cr>", { desc = "[Search] Harpoon marks" })
-keymap("n", "<leader>sc", telescope.git_commits, { desc = "[Search] Git commits" })
-keymap("n", "<leader>sC", telescope.git_bcommits, { desc = "[Search] Git buffer commits" })
-keymap("n", "<leader>sb", telescope.git_branches, { desc = "[Search] Git branches" })
-keymap("n", "<leader>st",
-  function()
-    return telescope.git_status({
-      layout_strategy = "vertical",
-      layout_config = {
-        vertical = {
-          preview_height = 0.6,
-        },
-      },
-    })
-  end,
-  { desc = "[Search] Git status" }
-)
+keymap("n", "<C-f>", fzf.live_grep, { desc = "Live grep" })
+keymap("n", "<C-p>", fzf.files, { desc = "Find files" })
+keymap("n", "<leader>?", fzf.oldfiles, { desc = "Find recently opened files" })
+keymap("n", "<leader><space>", fzf.buffers, { desc = "Find existing buffers" })
+keymap("n", "<leader>/",  fzf.lgrep_curbuf, { desc = "Find in current buffer" })
+keymap("n", "<leader>sD", fzf.diagnostics_workspace, { desc = "[Search] Diagnostics globally" })
+keymap("n", "<leader>sc", fzf.git_commits, { desc = "[Search] Git commits" })
+keymap("n", "<leader>sC", fzf.git_bcommits, { desc = "[Search] Git buffer commits" })
+keymap("n", "<leader>sb", fzf.git_branches, { desc = "[Search] Git branches" })
+keymap("n", "<leader>st", fzf.git_status, { desc = "[Search] Git status" })
 
 keymap("n", "<leader>e", "<cmd>Neotree toggle=true reveal_force_cwd<cr>", { desc = "[Toggle] Tree" })
 keymap("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "[Toggle] Git blame" })
@@ -141,13 +94,13 @@ keymap("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", { desc = "[Toggle]
 keymap("n", "<leader>th", harpoon_ui.toggle_quick_menu, { desc = "[Toggle] Harpoon menu" })
 
 keymap("n", "<leader>G", "<cmd>:below G<cr>", { desc = "[Fugitive] Git" })
-keymap("n", "<leader>m", search_modified_git_files, { desc = "[Search] Modified files" })
+keymap("n", "<leader>m", function() fzf.git_files({ cmd = "git ls-files --exclude-standard -m" }) end, { desc = "[Search] Modified files" })
 
 keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
 keymap("n", "gd", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
-keymap("n", "gs", telescope.lsp_document_symbols, { desc = "[LSP] Symbols" })
-keymap("n", "gS", telescope.lsp_dynamic_workspace_symbols, { desc = "[LSP] Symbols globally" })
-keymap("n", "gr", telescope.lsp_references, { desc = "[Search] References" })
+keymap("n", "gs", fzf.lsp_document_symbols, { desc = "[LSP] Symbols" })
+keymap("n", "gS", fzf.lsp_live_workspace_symbols, { desc = "[LSP] Symbols globally" })
+keymap("n", "gr", fzf.lsp_references, { desc = "[Search] References" })
 keymap("n", "<leader>C", "<cmd>RustLsp openCargo<cr>", { desc = "[Rust] Open Cargo.toml" })
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[LSP] Code actions" })
 keymap("n", "<leader>re", rename_and_save, { desc = "[LSP] Rename" })
