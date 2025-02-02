@@ -17,6 +17,7 @@ install_binary() {
   url="$1"
   filename="$2"
   temp_file=$(mktemp)
+  info downloading $url
   curl_github "$url" -o "$temp_file"
   chmod +x "$temp_file"
   mv "$temp_file" "${HOME}/.local/bin/${filename}"
@@ -31,9 +32,11 @@ install_tar_binary() {
   temp_dir=$(mktemp -d)
   pushd $temp_dir >/dev/null
   tar_path="x.tar.gz"
+  info downloading $url
   curl_github "$url" -o "$tar_path"
   tar xvf "$tar_path" >/dev/null
 
+  info installing binary ${2}
   mv "${2}" "${HOME}/.local/bin/${filename}"
   popd >/dev/null
 }
@@ -68,10 +71,23 @@ install_gh() {
   else
     warn installing gh ${GH_VERSION}...
     install_tar_binary \
-      "https://github.com/${GH_REPO}/releases/download/v${GH_VERSION}/gh_2.65.0_linux_amd64.tar.gz" \
+      "https://github.com/${GH_REPO}/releases/download/v${GH_VERSION}/gh_${GF_VERSION}_linux_amd64.tar.gz" \
       "gh_${GH_VERSION}_linux_amd64/bin/gh" \
       gh
     success gh installed
+  fi
+}
+
+install_fd() {
+  if fd --version 2>/dev/null | grep "^fd ${FD_VERSION}" >/dev/null; then
+    success fd is up to date
+  else
+    warn installing fd ${FD_VERSION}...
+    install_tar_binary \
+      "https://github.com/${FD_REPO}/releases/download/v${FD_VERSION}/fd-v${FD_VERSION}-x86_64-unknown-linux-musl.tar.gz" \
+      "fd-v${FD_VERSION}-x86_64-unknown-linux-musl/fd" \
+      fd
+    success fd installed
   fi
 }
 
@@ -193,15 +209,16 @@ install_fish() {
 install_cli_tools() {
   mkdir -p ~/.local/bin
   info installing cli tools
-  install_neovim
-  install_tmux
+  install_delta
+  install_fd
+  install_fish
   install_fzf
   install_gh
   install_jq
   install_mold
-  install_delta
+  install_neovim
+  install_tmux
   install_uv
-  install_fish
   success all cli tools installed
 }
 

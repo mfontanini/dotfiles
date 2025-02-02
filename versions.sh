@@ -1,5 +1,6 @@
 ALACRITTY_VERSION=0.15.0
 DELTA_VERSION=0.18.2
+FD_VERSION=10.2.0
 FZF_VERSION=0.58.0
 GH_VERSION=2.65.0
 JQ_VERSION=jq-1.7.1
@@ -12,6 +13,7 @@ UV_VERSION=0.5.25
 
 ALACRITTY_REPO=alacritty/alacritty
 DELTA_REPO=dandavison/delta
+FD_REPO=sharkdp/fd
 FZF_REPO=junegunn/fzf
 GH_REPO=cli/cli
 JQ_REPO=jqlang/jq
