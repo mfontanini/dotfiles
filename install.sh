@@ -65,6 +65,19 @@ install_fzf() {
   fi
 }
 
+install_bat() {
+  if bat --version 2>/dev/null | grep "^bat ${BAT_VERSION}" >/dev/null; then
+    success bat is up to date
+  else
+    warn installing bat ${FD_VERSION}...
+    install_tar_binary \
+      "https://github.com/${BAT_REPO}/releases/download/v${BAT_VERSION}/bat-v${BAT_VERSION}-x86_64-unknown-linux-musl.tar.gz" \
+      "bat-v${BAT_VERSION}-x86_64-unknown-linux-musl/bat" \
+      bat
+    success bat installed
+  fi
+}
+
 install_gh() {
   if gh --version 2>/dev/null | grep "^gh version ${GH_VERSION} " >/dev/null; then
     success gh is up to date
@@ -222,6 +235,7 @@ install_fish() {
 install_cli_tools() {
   mkdir -p ~/.local/bin
   info installing cli tools
+  install_bat
   install_delta
   install_fd
   install_fish

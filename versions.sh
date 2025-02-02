@@ -1,4 +1,5 @@
 ALACRITTY_VERSION=0.15.0
+BAT_VERSION=0.25.0
 DELTA_VERSION=0.18.2
 FD_VERSION=10.2.0
 FZF_VERSION=0.58.0
@@ -13,6 +14,7 @@ TMUX_VERSION=3.5a
 UV_VERSION=0.5.25
 
 ALACRITTY_REPO=alacritty/alacritty
+BAT_REPO=sharkdp/bat
 DELTA_REPO=dandavison/delta
 FD_REPO=sharkdp/fd
 FZF_REPO=junegunn/fzf
