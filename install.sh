@@ -91,6 +91,19 @@ install_fd() {
   fi
 }
 
+install_rg() {
+  if rg -V 2>/dev/null | grep "^ripgrep ${RG_VERSION}" >/dev/null; then
+    success rg is up to date
+  else
+    warn installing rg ${FD_VERSION}...
+    install_tar_binary \
+      "https://github.com/${RG_REPO}/releases/download/${RG_VERSION}/ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl.tar.gz" \
+      "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl/rg" \
+      rg
+    success rg installed
+  fi
+}
+
 install_jq() {
   if jq -V 2>/dev/null | grep "^${JQ_VERSION}$" >/dev/null; then
     success jq is up to date
@@ -217,6 +230,7 @@ install_cli_tools() {
   install_jq
   install_mold
   install_neovim
+  install_rg
   install_tmux
   install_uv
   success all cli tools installed
