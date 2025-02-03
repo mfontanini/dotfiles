@@ -77,7 +77,7 @@ keymap("n", "<leader>tk",
   { desc = "[Trouble] Previous"}
 )
 
-keymap("n", "<C-f>", fzf.live_grep, { desc = "Live grep" })
+keymap("n", "<C-f>", fzf.live_grep_native, { desc = "Live grep" })
 keymap("n", "<C-p>", fzf.files, { desc = "Find files" })
 keymap("n", "<leader>?", fzf.oldfiles, { desc = "Find recently opened files" })
 keymap("n", "<leader><space>", fzf.buffers, { desc = "Find existing buffers" })
