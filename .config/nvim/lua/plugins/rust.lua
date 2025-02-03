@@ -27,13 +27,16 @@ return {
                 features = "all",
               },
               loadOutDirsFromCheck = true,
-              buildScripts = true,
+              buildScripts = {
+                enable = true,
+              },
             },
             procMacro = {
               enable = true,
               ignored = {
                 ["napi-derive"] = { "napi" },
                 ["async-recursion"] = { "async_recursion" },
+                ["async-trait"] = { "async_trait" },
               },
             },
           },
