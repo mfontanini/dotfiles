@@ -5,6 +5,8 @@ local harpoon_mark = require("harpoon.mark")
 local harpoon_ui = require("harpoon.ui")
 local neotest = require("neotest")
 
+fzf.register_ui_select()
+
 local function search_modified_git_files()
   return fzf.git_files({
     cmd = "git ls-files --exclude-standard -m"
