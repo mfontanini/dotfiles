@@ -71,8 +71,8 @@ main() {
   done
 
   any_updates=0
-  dependencies=(nvim fzf gh alacritty mold delta tmux uv pyright ruff jq)
-  for dependency in "${dependencies[@]}"; do
+  dependencies=$(grep _REPO versions.sh | sed 's/_REPO.*//g')
+  for dependency in $dependencies; do
     repo_var="${dependency^^}_REPO"
     version_var="${dependency^^}_VERSION"
     if check_version "${version_var}" "${!repo_var}" "${!version_var}" "${auto_update}"; then
