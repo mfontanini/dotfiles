@@ -36,7 +36,6 @@ return {
               ignored = {
                 ["napi-derive"] = { "napi" },
                 ["async-recursion"] = { "async_recursion" },
-                ["async-trait"] = { "async_trait" },
               },
             },
           },
