@@ -4,6 +4,7 @@ local trouble = require("trouble")
 local harpoon_mark = require("harpoon.mark")
 local harpoon_ui = require("harpoon.ui")
 local neotest = require("neotest")
+local gitportal = require("gitportal")
 
 fzf.register_ui_select()
 
@@ -95,7 +96,6 @@ keymap("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc 
 keymap("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<cr>", { desc = "[Toggle] Git deleted lines" })
 keymap("n", "<leader>th", harpoon_ui.toggle_quick_menu, { desc = "[Toggle] Harpoon menu" })
 
-keymap("n", "<leader>G", "<cmd>:below G<cr>", { desc = "[Fugitive] Git" })
 keymap("n", "<leader>m", function() fzf.git_files({ cmd = "git ls-files --exclude-standard -m" }) end, { desc = "[Search] Modified files" })
 
 keymap("n", "<C-a>", vim.lsp.buf.definition, { desc = "[LSP] Jump to definition" })
@@ -109,6 +109,7 @@ keymap("n", "<leader>re", rename_and_save, { desc = "[LSP] Rename" })
 keymap("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "[LSP] Next diagnostic" })
 keymap("n", "<leader>dk", vim.diagnostic.goto_prev, { desc = "[LSP] Previous diagnostic" })
 keymap("n", "K", vim.lsp.buf.hover, { desc = "[LSP] Hover documentation" })
+keymap("n", "<leader>go", gitportal.open_file_in_browser, { desc = "[Git] Open in browser" })
 
 keymap("n", "<leader>rd", "<cmd>RustLsp openDocs<cr>", { desc = "[Rust] Open external docs" })
 keymap("n", "<leader>rr", "<cmd>RustRunnables<cr>", { desc = "[Rust] Runnables" })
@@ -130,6 +131,7 @@ keymap("v", ">", ">gv")
 keymap("v", "<", "<gv")
 keymap("v", "<C-j>", "<C-d>zz")
 keymap("v", "<C-k>", "<C-u>zz")
+keymap("v", "<leader>go", gitportal.open_file_in_browser, { desc = "[Git] Open in browser" })
 
 -- Terminal
 keymap("t", "<ESC>", "<C-\\><C-n>")
