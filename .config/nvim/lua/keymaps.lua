@@ -110,6 +110,7 @@ keymap("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "[LSP] Next diagnos
 keymap("n", "<leader>dk", vim.diagnostic.goto_prev, { desc = "[LSP] Previous diagnostic" })
 keymap("n", "K", vim.lsp.buf.hover, { desc = "[LSP] Hover documentation" })
 keymap("n", "<leader>go", gitportal.open_file_in_browser, { desc = "[Git] Open in browser" })
+keymap("n", "<leader>gO", gitportal.open_file_in_neovim, { desc = "[Git] Open in neovim" })
 
 keymap("n", "<leader>rd", "<cmd>RustLsp openDocs<cr>", { desc = "[Rust] Open external docs" })
 keymap("n", "<leader>rr", "<cmd>RustRunnables<cr>", { desc = "[Rust] Runnables" })
