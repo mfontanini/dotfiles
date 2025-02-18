@@ -84,7 +84,7 @@ install_gh() {
   else
     warn installing gh ${GH_VERSION}...
     install_tar_binary \
-      "https://github.com/${GH_REPO}/releases/download/v${GH_VERSION}/gh_${GF_VERSION}_linux_amd64.tar.gz" \
+      "https://github.com/${GH_REPO}/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz" \
       "gh_${GH_VERSION}_linux_amd64/bin/gh" \
       gh
     success gh installed
