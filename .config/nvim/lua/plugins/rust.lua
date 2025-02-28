@@ -1,5 +1,4 @@
 local rust_capabilities = require("blink.cmp").get_lsp_capabilities()
-rust_capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 return {
   {
@@ -36,6 +35,14 @@ return {
               ignored = {
                 ["napi-derive"] = { "napi" },
                 ["async-recursion"] = { "async_recursion" },
+              },
+            },
+            completion = {
+              callable = {
+                snippets = "add_parentheses",
+              },
+              postfix = {
+                enable = false,
               },
             },
           },

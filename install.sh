@@ -224,10 +224,10 @@ install_fish() {
     success fish is up to date
   else
     warn installing fish shell...
-    sudo apt-add-repository -y ppa:fish-shell/release-3 >/dev/null
+    sudo apt-add-repository -y ppa:fish-shell/release-4 >/dev/null
     sudo apt -qq update
     sudo apt -qq install -y fish >/dev/null
-    sudo chsh -s /usr/local/bin/fish >/dev/null
+    sudo chsh -s /usr/bin/fish >/dev/null
     success fish shell installed
   fi
 }
