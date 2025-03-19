@@ -1,5 +1,13 @@
 function tm -a 'session_name' --description "create/open a tmux session"
-  if ! set -q session_name[1]
+  argparse 'p/project' -- $argv
+
+  if set -q _flag_project
+    set -f path $(find $PROJECTS_PATH -maxdepth 1 -type d -print | fzf --info=right --tmux --layout=reverse)
+    if test $pipestatus[2] -ne 0
+      return 1
+    end
+    set -f session_name $(basename $path)
+  else if ! set -q session_name[1]
     set -f sessions $(tmux ls 2>/dev/null | cut -d: -f1)
     if ! set -q sessions[1]
       echo "no active sessions"
