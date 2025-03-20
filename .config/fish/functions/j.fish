@@ -10,6 +10,8 @@ function j --description "quick jump entry point" -a action
       jump_project
     case b
       jump_git_branch
+    case d
+      jump_dir
     case '*'
       echo "invalid action: $action"
   end
@@ -62,4 +64,12 @@ function jump_git_branch
     return 1
   end
   git checkout $branch 
+end
+
+function jump_dir
+  set -f dir $(fd -t dir -H | fzf --info=right --layout reverse)
+  if test $pipestatus[2] -ne 0
+    return 1
+  end
+  cd $dir
 end
