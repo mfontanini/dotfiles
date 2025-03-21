@@ -17,3 +17,5 @@ vim.opt.scrolloff = 10
 
 vim.wo.relativenumber = true
 vim.wo.number = true
+
+vim.g.omni_sql_no_default_maps = 0
