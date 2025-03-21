@@ -3,7 +3,7 @@ local rust_capabilities = require("blink.cmp").get_lsp_capabilities()
 return {
   {
     "mrcjkb/rustaceanvim",
-    version = "5.24.2",
+    version = "5.25.1",
     ft = { "rust" },
     opts = {
       tools = {
@@ -57,7 +57,7 @@ return {
   },
   {
     "saecki/crates.nvim",
-    version = "v0.4.0",
+    commit = "fd2bbca7aa588f24ffc3517831934b4c4a9588e9",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },

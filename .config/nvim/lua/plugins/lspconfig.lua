@@ -1,7 +1,7 @@
 return  {
   {
     "neovim/nvim-lspconfig",
-    commit = "bc6ada4b0892b7f10852c0b8ca7209fd39a6d754",
+    commit = "fb733ac734249ccf293e5c8018981d4d8f59fa8f",
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -16,6 +16,6 @@ return  {
   },
   {
     "RRethy/vim-illuminate",
-    commit = "5eeb7951fc630682c322e88a9bbdae5c224ff0aa",
+    commit = "19cb21f513fc2b02f0c66be70107741e837516a1",
   },
 }
