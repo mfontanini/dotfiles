@@ -54,6 +54,7 @@ keymap("n", "<leader>w",  ":w<cr>")
 keymap("n", "<leader>q",  ":cclose<cr>")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
+keymap("n", "<leader>z", ":ZenMode<cr>")
 keymap("c", "<cr>",
   function()
     return vim.fn.getcmdtype() == "/" and "<CR>zzzv" or "<CR>"
