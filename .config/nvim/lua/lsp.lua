@@ -8,9 +8,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-
 vim.diagnostic.config({
-  virtual_lines = true
+  virtual_text = true,
+  virtual_lines = { current_line = true },
+  underline = true,
+  update_in_insert = false,
 })
 
 vim.lsp.enable({"pyright", "ruff"})
