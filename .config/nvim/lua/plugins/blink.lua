@@ -1,7 +1,7 @@
 return {
   'saghen/blink.cmp',
 
-  version = 'v1.0.0',
+  version = 'v1.1.1',
 
   opts = {
     keymap = { 
@@ -36,7 +36,24 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'path', 'buffer' },
+      default = { 'lsp', 'path', 'buffer', 'cmdline' },
+    },
+
+    cmdline = {
+      enabled = true,
+      keymap = {
+        preset = 'cmdline',
+        ['<C-j>'] = { 'select_next', 'fallback' },
+        ['<C-k>'] = { 'select_prev', 'fallback' },
+        ['<cr>'] = { 'accept', 'fallback' },
+      },
+      completion = {
+        list = {
+          selection = {
+            auto_insert = false,
+          },
+        },
+      },
     },
   },
 
