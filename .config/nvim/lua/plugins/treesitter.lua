@@ -8,14 +8,15 @@ return {
       ensure_installed = {
         "bash",
         "c",
+        "cmake",
+        "dockerfile",
+        "hcl",
         "json",
         "lua",
+        "markdown",
         "python",
         "rust",
         "yaml",
-        "dockerfile",
-        "cmake",
-        "hcl",
       },
       indent = { enable = true },
       highlight = {
