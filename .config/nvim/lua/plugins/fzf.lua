@@ -1,6 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
-  commit = "addb648ffe152c353232e8a88ff1364cbcf1ed1b",
+  commit = "3de691fafd097177d10ebffb91dec5bec2cb30ed",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     keymap = {
