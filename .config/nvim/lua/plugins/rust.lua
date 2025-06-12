@@ -3,7 +3,7 @@ local rust_capabilities = require("blink.cmp").get_lsp_capabilities()
 return {
   {
     "mrcjkb/rustaceanvim",
-    version = "6.0.2",
+    version = "6.3.0",
     ft = { "rust" },
     opts = {
       tools = {

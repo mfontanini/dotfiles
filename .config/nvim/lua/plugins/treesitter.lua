@@ -16,6 +16,7 @@ return {
         "markdown",
         "python",
         "rust",
+        "sql",
         "yaml",
       },
       indent = { enable = true },
