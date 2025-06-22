@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- terraform formatting
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.tf" },
+  pattern = { "*.tf", "*.tfvars" },
   command = "set filetype=hcl",
 })
 
