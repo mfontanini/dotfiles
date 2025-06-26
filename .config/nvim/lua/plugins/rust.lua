@@ -44,6 +44,12 @@ return {
               postfix = {
                 enable = false,
               },
+              fullFunctionSignatures = {
+                enable = true,
+              },
+            },
+            assist = {
+              preferSelf = true,
             },
           },
         },
