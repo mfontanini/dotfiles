@@ -1,7 +1,7 @@
 return {
   'saghen/blink.cmp',
 
-  version = 'v1.5.0',
+  version = 'v1.5.1',
 
   opts = {
     keymap = { 
