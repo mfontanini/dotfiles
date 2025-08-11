@@ -16,7 +16,7 @@ end
 
 local function rename_and_save()
   vim.ui.input({ prompt = "Name: ", default = vim.fn.expand("<cword>")}, function(name)
-    local params = vim.lsp.util.make_position_params()
+    local params = vim.lsp.util.make_position_params(0, 'utf-8')
     params.newName = name
 
     vim.lsp.buf_request(0, "textDocument/rename", params, function(err, result, ctx, _)
