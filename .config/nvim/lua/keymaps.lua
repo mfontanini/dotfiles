@@ -133,6 +133,7 @@ keymap("v", ">", ">gv")
 keymap("v", "<", "<gv")
 keymap("v", "<C-j>", "<C-d>zz")
 keymap("v", "<C-k>", "<C-u>zz")
+keymap("v", "<C-c>",  "<esc>")
 keymap("v", "<leader>go", gitportal.open_file_in_browser, { desc = "[Git] Open in browser" })
 
 -- Terminal
