@@ -4,6 +4,7 @@ end
 
 bind \n down-line
 bind \v up-line
+bind alt-backspace backward-kill-word
 
 set -x EDITOR nvim
 
