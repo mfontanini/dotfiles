@@ -20,7 +20,7 @@ function tm -a 'session_name' --description "create/open a tmux session"
     end
   end
 
-  if ! tmux has-session -t $session_name 2>/dev/null
+  if ! tmux has-session -t=$session_name 2>/dev/null
     # Set '$PROJECTS_PATH/$session_name` as the start dir if it exists
     if set -q PROJECTS_PATH
       for dir in $PROJECTS_PATH
