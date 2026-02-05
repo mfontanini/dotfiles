@@ -15,4 +15,4 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
-vim.lsp.enable({"pyright", "ruff", "typescript-language-server"})
+vim.lsp.enable({"pyright", "ruff", "typescript-language-server", "gopls"})
