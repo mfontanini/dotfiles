@@ -1,6 +1,6 @@
 return {
   "folke/trouble.nvim",
-  version = "v3.7.1",
+  commit = "bd67efe408d4816e25e8491cc5ad4088e708a69a",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     severity = vim.diagnostic.severity.WARN,
