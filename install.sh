@@ -134,8 +134,18 @@ install_alacritty() {
     success alacritty is up to date
   else
     warn installing alacritty ${ALACRITTY_VERSION}...
-    cargo install -q alacritty
+    cargo install -q --version "$ALACRITTY_VERSION" alacritty
     success alacritty installed
+  fi
+}
+
+install_tree_sitter_cli() {
+  if tree-sitter -V 2>/dev/null | grep "^tree-sitter ${TREE_SITTER_CLI_VERSION}$" >/dev/null; then
+    success tree-sitter-cli is up to date
+  else
+    warn installing tree-sitter-cli $TREE_SITTER_CLI_VERSION...
+    cargo install -q --locked --version "$TREE_SITTER_CLI_VERSION" tree-sitter-cli
+    success tree-sitter-cli installed
   fi
 }
 
@@ -169,7 +179,7 @@ install_delta() {
 }
 
 install_uv() {
-  if uv --version 2>/dev/null | grep "^uv ${UV_VERSION}$" >/dev/null; then
+  if uv --version 2>/dev/null | grep "^uv ${UV_VERSION} " >/dev/null; then
     success uv is up to date
   else
     warn installing uv ${UV_VERSION}...
@@ -246,6 +256,7 @@ install_cli_tools() {
   install_neovim
   install_rg
   install_tmux
+  install_tree_sitter_cli
   install_uv
   success all cli tools installed
 }

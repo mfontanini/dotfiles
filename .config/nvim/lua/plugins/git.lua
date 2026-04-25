@@ -1,7 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    version = "v1.0.2",
+    version = "v2.1.0",
     opts = {
       signcolumn = true,
       current_line_blame_opts = {
