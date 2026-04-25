@@ -1,4 +1,4 @@
 return {
-  "RRethy/vim-illuminate",
-  commit = "19cb21f513fc2b02f0c66be70107741e837516a1",
+  "UrsaDK/vim-illuminate",
+  commit = "977b9454c9275e35df56d6090944e770b2f36c95",
 }
