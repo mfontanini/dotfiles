@@ -7,15 +7,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Auto save when leaving a buffer
-vim.api.nvim_create_autocmd("BufLeave", {
-  callback = function()
-    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
-      vim.api.nvim_command('silent update')
-    end
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "Cargo.toml",
   callback = function()

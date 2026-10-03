@@ -12,6 +12,9 @@ return {
     },
 
     completion = {
+      accept = {
+        resolve_timeout_ms = 1000,
+      },
       menu = {
         draw = {
           columns = {

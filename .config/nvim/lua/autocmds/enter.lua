@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- markdown formatting
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.md" },
-  command = "set textwidth=120 fo+=aw wrap",
+  command = "set fo+=aw wrap",
 })
 
 -- Open terminal on insert mode
