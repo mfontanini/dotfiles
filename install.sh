@@ -199,12 +199,14 @@ install_pyright() {
 }
 
 install_ruff() {
-  if "${VENV_PATH}/bin/ruff-lsp" --version 2>/dev/null | grep "^ruff-lsp ${RUFF_VERSION}$" >/dev/null; then
+  if "${VENV_PATH}/bin/ruff" --version 2>/dev/null | grep "^ruff ${RUFF_VERSION}$" >/dev/null; then
     success ruff is up to date
   else
     warn installing ruff ${RUFF_VERSION}...
-    uv pip install --upgrade ruff-lsp
-    success ruff-lsp installed
+    install_tar_binary "https://github.com/${RUFF_REPO}/releases/download/${RUFF_VERSION}/ruff-x86_64-unknown-linux-gnu.tar.gz" \
+      "ruff-x86_64-unknown-linux-gnu/ruff" \
+      ruff
+    success ruff installed
   fi
 }
 
